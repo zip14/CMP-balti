@@ -5,7 +5,7 @@
         <div class="box-header">
             <h3 class="box-title">Categorie pentru galerie</h3>
             <div class="box-tools">
-                <a data-fancybox data-type="ajax" data-src="{{ route('gallary-category.create') }}" href="javascript:;" class="btn btn-block btn-primary "><i class="fa fa-fw fa-plus"></i> Adăuga articol</a>
+                <a data-fancybox data-type="ajax" data-src="{{ route('gallary-category.create') }}" href="javascript:;" class="btn btn-block btn-primary "><i class="fa fa-fw fa-plus"></i> Adăuga categorie</a>
             </div>
         </div>
         <!-- /.box-header -->
@@ -13,7 +13,7 @@
             <table id="gallary-category_table" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                 <thead>
                 <tr role="row">
-                    <th>Name</th>
+                    <th>Denumire</th>
                     <th>Data</th>
                     <th>Acţiuni</th>
                 </tr>

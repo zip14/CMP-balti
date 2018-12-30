@@ -15,12 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('gallary-category/select', 'GallaryCategoryController@selectArticle')->name('gallary-category.list');
+//Gallary-category
+Route::post('gallary-category/select', 'GallaryCategoryController@selectCategories')->name('gallary-category.list');
 Route::get('gallary-category/{gallary_category}/delete', 'GallaryCategoryController@delete')->name('gallary-category.delete');
 Route::resource('gallary-category', 'GallaryCategoryController');
 
 
-
+//Gallary
 Route::post('gallary/select', 'GallaryController@selectGallary')->name('gallary.list');
 Route::get('gallary/{gallary}/delete', 'GallaryController@delete')->name('gallary.delete');
 Route::resource('gallary', 'GallaryController');
+
+
+//News-category
+Route::post('news-category/select', 'NewsCategoryController@selectCategories')->name('news-category.list');
+Route::get('news-category/{news_category}/delete', 'NewsCategoryController@delete')->name('news-category.delete');
+Route::resource('news-category', 'NewsCategoryController');

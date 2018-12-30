@@ -18,7 +18,7 @@ class GallaryCategoryController extends Controller
     }
 
 
-    public function selectArticle()
+    public function selectCategories()
     {
 
         $query = GallaryCategory::select('id', 'name', 'created_at');
@@ -71,9 +71,9 @@ class GallaryCategoryController extends Controller
 
         $input = $request->all();
 
-        $article = new GallaryCategory();
-        $article->fill($input);
-        $article->save();
+        $category = new GallaryCategory();
+        $category->fill($input);
+        $category->save();
 
         return response()->json([
             'message' => "Categoria a fost adăugată"
@@ -116,9 +116,9 @@ class GallaryCategoryController extends Controller
             'name' => 'required',
         ]);
 
-        $article = GallaryCategory::findOrFail($id);
-        $article->fill($request->all());
-        $article->update();
+        $category = GallaryCategory::findOrFail($id);
+        $category->fill($request->all());
+        $category->update();
 
         return response()->json([
             'message' => "Categoria a fost actualizata"

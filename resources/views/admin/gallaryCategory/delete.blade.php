@@ -35,7 +35,7 @@
         e.preventDefault();
 
         $.post(url, $('#gallary-category_delete').serialize(), null, 'json').done(function(response) {
-            new Noty({type: 'success', layout: 'topRight', text: response.message}).show();
+            new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
 
             $.fancybox.close();
 

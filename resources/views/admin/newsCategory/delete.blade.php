@@ -2,7 +2,7 @@
 
     <div class="col-md-12">
 
-        <form method="POST" class="form-horizontal" id="gallary">
+        <form method="POST" class="form-horizontal" id="news-category_delete">
             {!! csrf_field() !!}
             <?php if(!empty($id)){?>
             <input type="hidden" name="_method" value="DELETE">
@@ -10,7 +10,7 @@
             <?php }?>
 
             <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title"><strong>Șterge imaginea</strong></h3>
+                <h3 class="panel-title"><strong>Șterge categorie</strong></h3>
                 <div class="panel-body">
                     <p>Ești sigur?</p>
                 </div>
@@ -24,17 +24,17 @@
 
 
 <script>
-    var url = '/gallary/' + $('#id'). val();
+    var url = '/news-category/' + $('#id'). val();
 
     $('#cancel').on('click', function(){
         $.fancybox.close();
         return false;
     });
 
-    $("#gallary").submit(function(e){
+    $("#news-category_delete").submit(function(e){
         e.preventDefault();
 
-        $.post(url, $('#gallary').serialize(), null, 'json').done(function(response) {
+        $.post(url, $('#news-category_delete').serialize(), null, 'json').done(function(response) {
             new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
 
             $.fancybox.close();

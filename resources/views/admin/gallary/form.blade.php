@@ -68,7 +68,7 @@
                     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
                     processData: false, // NEEDED, DON'T OMIT THIS
                     success: function (response) {
-                        new Noty({type: 'success', layout: 'topRight', text: response.message}).show();
+                        new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
 
                         $.fancybox.close();
                         if(dt) {

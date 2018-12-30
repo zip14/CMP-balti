@@ -1,6 +1,6 @@
 <div style="max-width:700px">
     <div class="col-md-12">
-        <form method="POST"  class="form-horizontal" id="gallary-category" enctype="multipart/form-data">
+        <form method="POST"  class="form-horizontal" id="news-category" enctype="multipart/form-data">
             {!! csrf_field() !!}
 
             <?php if(!empty($id)){?>
@@ -9,7 +9,7 @@
             <?php }?>
 
             <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editarea' : 'Adăuga'}} categorie pentru galerie</strong></h3>
+                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editarea' : 'Adăuga'}} categorie pentru noutăţi</strong></h3>
             </div>
 
             <div class="form-group">
@@ -26,13 +26,13 @@
 </div>
 <script>
 
-    var url = '/gallary-category';
+    var url = '/news-category';
     var id = $('#id'). val()
     if(id != undefined){
-        url = '/gallary-category/' + id;
+        url = '/news-category/' + id;
     }
 
-    $("#gallary-category").validationEngine({
+    $("#news-category").validationEngine({
         promptPosition : "topLeft",
         onValidationComplete: function(form, status){
             if(status){
@@ -40,7 +40,7 @@
                 $.ajax ({
                     url : url,
                     type: 'POST',
-                    data: new FormData($('#gallary-category')[0]),
+                    data: new FormData($('#news-category')[0]),
                     dataType: 'JSON',
                     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
                     processData: false, // NEEDED, DON'T OMIT THIS
