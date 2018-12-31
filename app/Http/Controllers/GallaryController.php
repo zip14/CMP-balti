@@ -40,8 +40,8 @@ class GallaryController extends Controller
                 $query->orderBy($col, $dir);
             })
             ->rawColumns(['actions', 'date', 'image', 'category'])
-            ->addColumn('actions', 'admin.gallary.actions')
-            ->addColumn('image', 'admin.gallary.image')
+            ->addColumn('actions', 'admin/gallary/actions')
+            ->addColumn('image', 'admin/gallary/image')
 
             ->addColumn('date', function($query){
                 return date('d.m.Y', strtotime($query->created_at));
@@ -61,7 +61,7 @@ class GallaryController extends Controller
      */
     public function create()
     {
-        return view('admin.gallary.form', ['category' => GallaryCategory::all()]);
+        return view('admin/gallary/form', ['category' => GallaryCategory::all()]);
     }
 
     /**
@@ -116,7 +116,7 @@ class GallaryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.gallary.form', ['category' => GallaryCategory::all(), 'gallary' =>  Gallary::findOrFail($id)]);
+        return view('admin/gallary/form', ['category' => GallaryCategory::all(), 'gallary' =>  Gallary::findOrFail($id)]);
 
     }
 
@@ -162,7 +162,7 @@ class GallaryController extends Controller
 
     public function delete($id)
     {
-        return view('admin.gallary.delete', Gallary::findOrFail($id));
+        return view('admin/gallary/delete', Gallary::findOrFail($id));
     }
 
     /**

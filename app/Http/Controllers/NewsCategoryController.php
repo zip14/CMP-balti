@@ -36,7 +36,7 @@ class NewsCategoryController extends Controller
                 $query->orderBy($col, $dir);
             })
             ->rawColumns(['actions', 'date'])
-            ->addColumn('actions', 'admin.newsCategory.actions')
+            ->addColumn('actions', 'admin/newsCategory/actions')
 
             ->addColumn('date', function($query){
                 return date('d.m.Y', strtotime($query->created_at));
@@ -54,7 +54,7 @@ class NewsCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.newsCategory.form');
+        return view('admin/newsCategory/form');
     }
 
     /**
@@ -99,7 +99,7 @@ class NewsCategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.newsCategory.form', NewsCategory::findOrFail($id));
+        return view('admin/newsCategory/form', NewsCategory::findOrFail($id));
     }
 
     /**
@@ -126,7 +126,7 @@ class NewsCategoryController extends Controller
 
     public function delete($id)
     {
-        return view('admin.newsCategory.delete', NewsCategory::findOrFail($id));
+        return view('admin/newsCategory/delete', NewsCategory::findOrFail($id));
     }
     /**
      * Remove the specified resource from storage.

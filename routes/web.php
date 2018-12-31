@@ -37,3 +37,8 @@ Route::resource('news-category', 'NewsCategoryController');
 Route::post('news/select', 'NewsController@selectNews')->name('news.list');
 Route::get('news/{news}/delete', 'NewsController@delete')->name('news.delete');
 Route::resource('news', 'NewsController');
+
+//Specialty
+Route::post('specialty/select', 'SpecialtyController@selectSpecialty')->name('specialty.list');
+Route::get('specialty/{specialty}/delete', 'SpecialtyController@delete')->name('specialty.delete');
+Route::resource('specialty', 'SpecialtyController');

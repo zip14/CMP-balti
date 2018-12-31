@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\NewsCategory;
+use App\Specialty;
 use Illuminate\Http\Request;
-use App\News;
 use File;
 
 
-class NewsController extends Controller
+class SpecialtyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,18 +16,19 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin/news/index');
+        return view('admin/specialty/index');
+
     }
 
-    public function selectNews()
+    public function selectSpecialty()
     {
-        $query = News::select('id', 'title', 'description', 'image', 'id_category', 'created_at')->with('category');
+        $query = Specialty::select('id', 'name', 'description', 'image', 'schedule_link', 'created_at');
 
 
         return datatables($query)
             ->order(function ($query) {
                 $columns = array(
-                    0 => 'title',
+                    0 => 'name',
                     4 => 'created_at'
                 );
 
@@ -37,22 +37,22 @@ class NewsController extends Controller
 
                 $query->orderBy($col, $dir);
             })
-            ->rawColumns(['actions', 'date', 'image', 'category'])
-            ->addColumn('actions', 'admin/news/actions')
-            ->addColumn('image', 'admin/news/image')
+            ->rawColumns(['actions', 'date', 'image', 'orar_link'])
+            ->addColumn('actions', 'admin/specialty/actions')
+            ->addColumn('image', 'admin/specialty/image')
 
             ->addColumn('date', function($query){
                 return date('d.m.Y', strtotime($query->created_at));
             })
 
-            ->addColumn('category', function($query){
-                return $query->category['name'];
+            ->addColumn('orar_link', function($query){
+//                return $query->category['name'];
+                return "<a href='{$query->schedule_link}' target='_blank'>Orar({$query->name})</a>";
             })
 
             ->toJson();
 
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -60,7 +60,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin/news/form', ['category' => NewsCategory::all()]);
+        return view('admin/specialty/form');
+
     }
 
     /**
@@ -72,10 +73,10 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'name' => 'required',
             'content' => 'required',
             'description' => 'required',
-            'id_category' => 'required',
+            'schedule_link' => 'required',
             'image' => 'required',
         ]);
 
@@ -84,17 +85,17 @@ class NewsController extends Controller
         if($request->hasFile('image')){
             $file = $request->file('image');
             $input['image'] = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/images/news/', $input['image']);
+            $file->move(public_path() . '/images/specialty/', $input['image']);
 
         }
 
-        $news = new News();
-        $news->fill($input);
-        $news->save();
+        $specialty = new Specialty();
+        $specialty->fill($input);
+        $specialty->save();
 
 
         return response()->json([
-            'message' => "Au fost adăugate știri"
+            'message' => "Specialitatea a fost adăugată"
         ], 201);
     }
 
@@ -117,7 +118,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin/news/form', ['category' => NewsCategory::all(), 'news' =>  News::findOrFail($id)]);
+        return view('admin/specialty/form', Specialty::findOrFail($id));
+
     }
 
     /**
@@ -130,10 +132,10 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'name' => 'required',
             'content' => 'required',
             'description' => 'required',
-            'id_category' => 'required',
+            'schedule_link' => 'required',
             'image' => 'required',
         ]);
 
@@ -142,32 +144,31 @@ class NewsController extends Controller
         if($request->hasFile('image')){
             $file = $request->file('image');
             $input['image'] = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/images/news', $input['image']);
+            $file->move(public_path() . '/images/specialty', $input['image']);
 
             if(isset($input['old_image']) && !empty($input['old_image'])){
-                File::delete(public_path() . '/images/news/' . $input['old_image']);
+                File::delete(public_path() . '/images/specialty/' . $input['old_image']);
             }
 
         }elseif(isset($input['old_image']) && !empty($input['old_image'])){
             $input['image'] = $input['old_image'];
         }
 
-        $news = News::findOrFail($id);
-        $news->fill($input);
-        $news->update();
+        $specialty = Specialty::findOrFail($id);
+        $specialty->fill($input);
+        $specialty->update();
 
 
         return response()->json([
-            'message' => "Articol au fost actualizat"
+            'message' => "Specialitatea a fost actualizată"
         ], 201);
-
     }
+
 
     public function delete($id)
     {
-        return view('admin/news/delete', News::findOrFail($id));
+        return view('admin/specialty/delete', Specialty::findOrFail($id));
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -176,16 +177,16 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::findOrFail($id);
+        $specialty = Specialty::findOrFail($id);
 
-        if(isset($news['image']) && !empty($news['image'])){
-            File::delete(public_path() . '/images/news/' . $news['image']);
+        if(isset($specialty['image']) && !empty($specialty['image'])){
+            File::delete(public_path() . '/images/specialty/' . $specialty['image']);
         }
 
-        $news->delete();
+        $specialty->delete();
 
         return response()->json([
-            'message' => 'Știrile au fost șterse'
+            'message' => 'Specialitatea a fost eliminată'
         ], 200);
     }
 }
