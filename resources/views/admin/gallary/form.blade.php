@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <label for="image">Imaginea</label>
-                <input type="file" {{ !isset($gallary['id']) ? 'class="validate[required]"' : '' }}  id="image" name="image">
+                <input type="file" class="validate[required]"  id="image" name="image">
             </div>
 
             <div class="form-group">

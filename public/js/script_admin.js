@@ -6,7 +6,7 @@ function onSaveRequestError(error) {
     }
 
     if(!error.hasOwnProperty('responseJSON')) {
-        new Noty({type: 'error', layout: 'topRight', text: "Bad response"}).show();
+        new Noty({type: 'error', layout: 'topRight', text: "Bad response", timeout:3000}).show();
        //console.error(error);
 
         return;
@@ -19,17 +19,17 @@ function onSaveRequestError(error) {
                 var errorEntry = responseBody.errors[key];
                 if(Array.isArray(errorEntry)) {
                     errorEntry.forEach(function(entry) {
-                        new Noty({type: 'error', layout: 'topRight', text: entry}).show();
+                        new Noty({type: 'error', layout: 'topRight', text: entry, timeout:3000}).show();
                     });
                 } else {
-                    new Noty({type: 'error', layout: 'topRight', text: errorEntry}).show();
+                    new Noty({type: 'error', layout: 'topRight', text: errorEntry, timeout:3000}).show();
                 }
             }
         }
     } else if(responseBody.hasOwnProperty('message')){
-        new Noty({type: 'error', layout: 'topRight', text: responseBody.message}).show();
+        new Noty({type: 'error', layout: 'topRight', text: responseBody.message, timeout:3000}).show();
     } else {
-        new Noty({type: 'error', layout: 'topRight', text: "Server error"}).show();
+        new Noty({type: 'error', layout: 'topRight', text: "Server error", timeout:3000}).show();
         //console.error(error);
     }
 };

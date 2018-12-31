@@ -31,3 +31,9 @@ Route::resource('gallary', 'GallaryController');
 Route::post('news-category/select', 'NewsCategoryController@selectCategories')->name('news-category.list');
 Route::get('news-category/{news_category}/delete', 'NewsCategoryController@delete')->name('news-category.delete');
 Route::resource('news-category', 'NewsCategoryController');
+
+
+//News
+Route::post('news/select', 'NewsController@selectNews')->name('news.list');
+Route::get('news/{news}/delete', 'NewsController@delete')->name('news.delete');
+Route::resource('news', 'NewsController');

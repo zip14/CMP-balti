@@ -134,7 +134,7 @@
                 <li><a href="{{ route('gallary-category.index') }}"><i class="fa fa-fw fa-list"></i> <span>Categorie pentru galerie</span></a></li>
                 <li><a href="{{ route('gallary.index') }}"><i class="fa fa-fw fa-file-photo-o"></i> <span>Galerie</span></a></li>
                 <li><a href="{{ route('news-category.index') }}"><i class="fa fa-fw fa-list-alt"></i> <span>Categorie pentru noutăţi</span></a></li>
-
+                <li><a href="{{ route('news.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> <span>Noutăţi</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
