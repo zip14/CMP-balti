@@ -136,7 +136,6 @@ class SpecialtyController extends Controller
             'content' => 'required',
             'description' => 'required',
             'schedule_link' => 'required',
-            'image' => 'required',
         ]);
 
         $input = $request->all();

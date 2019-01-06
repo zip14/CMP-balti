@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@homePage')->name('homePage');
+Route::get('news/', 'PagesController@newsPage')->name('newsPage');
+Route::get('gallary/', 'PagesController@gallaryPage')->name('gallaryPage');
+Route::get('about/', 'PagesController@aboutPage')->name('aboutPage');
+Route::get('contact/', 'PagesController@contactPage')->name('contactPage');
+Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage');
+Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
+Route::get('news/{news}', 'PagesController@fullNewsPage')->name('fullNewsPage');
 
 Route::get('login', 'UsersController@login')->name('myLogin');
 Route::post('login', 'UsersController@authenticate')->name('login');
