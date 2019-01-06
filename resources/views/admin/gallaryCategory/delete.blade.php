@@ -24,7 +24,7 @@
 
 
 <script>
-    var url = '/gallary-category/' + $('#id'). val();
+    var url = 'gallary-category/' + $('#id'). val();
 
     $('#cancel').on('click', function(){
         $.fancybox.close();

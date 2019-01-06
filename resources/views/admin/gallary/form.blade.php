@@ -9,7 +9,7 @@
             @endif
 
             <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title"><strong>{{!empty($gallary['id']) ? 'Editarea' : 'Adăuga'}} imaginea</strong></h3>
+                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editați' : 'Adăugați'}} imaginea</strong></h3>
             </div>
 
             <div class="form-group">
@@ -43,17 +43,17 @@
             </div>
 
             <button class="btn btn-default" type="reset">Curăța</button>
-            <button class="btn btn-primary pull-right" type="submit">Adăuga</button>
+            <button class="btn btn-primary pull-right" type="submit">{{!empty($id) ? 'Modifica' : 'Adăuga'}}</button>
 
         </form>
     </div>
 </div>
 <script>
 
-    var url = '/gallary';
+    var url = '{{route('gallary.store')}}';
     var id = $('#id'). val()
     if(id != undefined){
-        url = '/gallary/' + id;
+        url = 'gallary/' + id;
     }
     $("#gallary").validationEngine({
         promptPosition : "topLeft",

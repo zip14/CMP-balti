@@ -56,7 +56,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="/" class="logo" target="_blank">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">CMP</span>
             <!-- logo for regular state and mobile devices -->
@@ -75,32 +75,38 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            @if(!empty(Auth::user()->image))
+                                <img src="{{asset('public/images/users') . '/' . Auth::user()->image}}" class="user-image" alt="{{Auth::user()->name}} {{Auth::user()->surname}}">
+                            @else
+                                <img src="{{asset('public/images/noavatar.png')}}" class="user-image" alt="{{Auth::user()->name}} {{Auth::user()->surname}}">
+                            @endif
 
-                                <img src="{{asset('public/images/noavatar.png')}}" class="user-image" alt="">
 
-
-
-                            <span class="hidden-xs">admin</span>
+                            <span class="hidden-xs">{{Auth::user()->name}} {{Auth::user()->surname}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
+                                @if(!empty(Auth::user()->image))
+                                    <img src="{{asset('public/images/users'). '/' . Auth::user()->image}}" class="img-circle" alt="{{Auth::user()->name}} {{Auth::user()->surname}}">
+                                @else
+                                    <img src="{{asset('public/images/noavatar.png')}}" class="img-circle" alt="{{Auth::user()->name}} {{Auth::user()->surname}}">
+                                @endif
 
-                                    <img src="{{asset('public/images/noavatar.png')}}" class="img-circle" alt="">
 
                                 <p>
-
-                                    <small>admin</small>
+                                    {{Auth::user()->name}} {{Auth::user()->surname}}
+                                    <small>{{Auth::user()->position}}</small>
                                 </p>
                             </li>
 
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="" class="btn btn-default btn-flat">Profil</a>
+                                    <a href="{{route('users.profile')}}" class="btn btn-default btn-flat">Profil</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a data-fancybox data-type="ajax" data-src="" href="javascript:;" class="btn btn-default btn-flat">Ieșire</a>
+                                    <a data-fancybox data-type="ajax" data-src="{{ route('logoutForm') }}" href="javascript:;" class="btn btn-default btn-flat">Ieșire</a>
                                 </div>
                             </li>
                         </ul>
@@ -118,12 +124,14 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-
-                        <img src="{{asset('public/images/noavatar.png')}}" class="img-circle" alt="">
-
+                    @if(!empty(Auth::user()->image))
+                        <img src="{{asset('public/images/users') . '/' . Auth::user()->image}}" class="img-circle" alt="{{Auth::user()->name}} {{Auth::user()->surname}}">
+                    @else
+                        <img src="{{asset('public/images/noavatar.png')}}" class="img-circle" alt="{{Auth::user()->name}} {{Auth::user()->surname}}">
+                    @endif
                 </div>
                 <div class="pull-left info">
-                    <p>Admin</p>
+                    <p>{{Auth::user()->name}} {{Auth::user()->surname}}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -136,6 +144,11 @@
                 <li><a href="{{ route('news-category.index') }}"><i class="fa fa-fw fa-list-alt"></i> <span>Categorie pentru noutăţi</span></a></li>
                 <li><a href="{{ route('news.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> <span>Noutăţi</span></a></li>
                 <li><a href="{{ route('specialty.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> <span>Specialități</span></a></li>
+
+                @if(Auth::user()->type == 'admin')
+                    <li><a href="{{ route('users.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> <span>Utilizatori</span></a></li>
+                @endif
+
             </ul>
         </section>
         <!-- /.sidebar -->

@@ -63,7 +63,7 @@ $( document ).ready(function() {
 
             if (typeof tinymce !== 'undefined') {
                 tinymce.remove('#editor');
-            }
+        }
 		}
 	});
 

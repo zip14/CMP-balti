@@ -9,7 +9,7 @@
             <?php }?>
 
             <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editarea' : 'Adăuga'}} categorie pentru galerie</strong></h3>
+                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editați' : 'Adăugați'}} categorie pentru galerie</strong></h3>
             </div>
 
             <div class="form-group">
@@ -19,17 +19,17 @@
 
 
             <button class="btn btn-default" type="reset">Curăța</button>
-            <button class="btn btn-primary pull-right" type="submit">Adăuga</button>
+            <button class="btn btn-primary pull-right" type="submit">{{!empty($id) ? 'Modifica' : 'Adăuga'}}</button>
 
         </form>
     </div>
 </div>
 <script>
 
-    var url = '/gallary-category';
+    var url = '{{route('gallary-category.store')}}';
     var id = $('#id'). val()
     if(id != undefined){
-        url = '/gallary-category/' + id;
+        url = 'gallary-category/' + id;
     }
 
     $("#gallary-category").validationEngine({

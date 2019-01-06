@@ -24,7 +24,7 @@
 
 
 <script>
-    var url = '/specialty/' + $('#id'). val();
+    var url = 'specialty/' + $('#id'). val();
 
     $('#cancel').on('click', function(){
         $.fancybox.close();

@@ -9,7 +9,7 @@
             <?php }?>
 
             <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editarea' : 'Adăuga'}} specialitate</strong></h3>
+                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editați' : 'Adăugați'}} specialitate</strong></h3>
             </div>
 
             <div class="form-group">
@@ -28,8 +28,8 @@
             </div>
 
             <div class="form-group">
-                <label for="content">Conţinut</label>
-                <textarea class="validate[required] editor" id="content" name="content" rows="10" cols="80">{{!empty($content) ? $content : ''}}</textarea>
+                <label for="editor">Conţinut</label>
+                <textarea class="validate[required]" id="editor" name="content" rows="10" cols="80">{{!empty($content) ? $content : ''}}</textarea>
             </div>
 
             <div class="form-group">
@@ -48,21 +48,21 @@
 
 
             <button class="btn btn-default" type="reset">Curăța</button>
-            <button class="btn btn-primary pull-right" type="submit">Adăuga</button>
+            <button class="btn btn-primary pull-right" type="submit">{{!empty($id) ? 'Modifica' : 'Adăuga'}}</button>
 
         </form>
     </div>
 </div>
 <script>
 
-    var url = '/specialty';
+    var url = '{{route('specialty.store')}}';
     var id = $('#id'). val()
     if(id != undefined){
-        url = '/specialty/' + id;
+        url = 'specialty/' + id;
     }
 
     tinymce.init({
-        selector: '.editor',
+        selector: '#editor',
         entity_encoding: 'raw',
         menubar: false,
         branding: false,
