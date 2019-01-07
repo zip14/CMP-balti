@@ -67,6 +67,8 @@ class NewsCategoryController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'alias' => 'required|unique:news_categories',
+
         ]);
 
         $input = $request->all();
@@ -113,6 +115,8 @@ class NewsCategoryController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'alias' => 'required|unique:news_categories,alias,'.$request['id'],
+
         ]);
 
         $category = NewsCategory::findOrFail($id);

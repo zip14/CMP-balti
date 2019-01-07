@@ -767,7 +767,7 @@ a.btn-left:hover, .top-header .social-top ul li a:hover, .main-header .menu-wrap
 
 .box-content {
   background: white;
-  padding: 25px;
+  padding: 15px;
   overflow: hidden;
 }
 
@@ -1048,6 +1048,8 @@ h3.grid-heading {
 .project-item .project-detail h2 a {
   color: #2c2c2c;
 }
+
+
 .project-item .project-detail h2 a:hover {
   color: #f69730;
 }
@@ -1069,6 +1071,13 @@ h3.grid-heading {
   border-bottom: 1px solid #d5d5d5;
   padding: 8px 16px;
 }
+
+.filter-categories ul li a{
+  color: inherit;
+
+}
+
+
 .filter-categories ul li.active span {
   background: #f69730;
   color: white;
@@ -1253,9 +1262,18 @@ div.load-more a.load-more:active {
   color: #aaaaaa;
 }
 
-.pagination {
+.pagination{
   margin-top: 40px;
 }
+
+.pagination .disabled{
+  background: white;
+  border-bottom: 1px solid #d5d5d5;
+  padding: 10px 12px;
+  color: #f69730;
+}
+
+
 .pagination ul li {
   display: inline-block;
   margin: 0 2px;

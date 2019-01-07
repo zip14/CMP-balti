@@ -19,6 +19,7 @@ Route::get('contact/', 'PagesController@contactPage')->name('contactPage');
 Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage');
 Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
 Route::get('news/{news}', 'PagesController@fullNewsPage')->name('fullNewsPage');
+Route::get('news/category/{category}', 'PagesController@categoryNewsPage')->name('categoryNewsPage');
 
 Route::get('login', 'UsersController@login')->name('myLogin');
 Route::post('login', 'UsersController@authenticate')->name('login');

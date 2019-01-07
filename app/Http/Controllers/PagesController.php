@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use App\NewsCategory;
 use App\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,18 +19,37 @@ class PagesController extends Controller
         ];
         $data['active'] = 'home';
 
-//        echo ('<pre>');
-//        print_r($data);
-//        echo ('</pre>');die;
         return view('home', $data);
     }
 
     public function newsPage(){
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
+            'news' => News::orderby('created_at', 'asc')->paginate(9),
+            'newsCategory' => NewsCategory::all(),
+            'activeCategory' => 'all'
         ];
 
         $data['active'] = 'news';
+        $data['selctedCategory'] = 'all';
+
+        return view('news', $data);
+    }
+
+    public function categoryNewsPage($alias){
+
+        $selctedCategory = NewsCategory::where('alias', $alias)->first();
+
+        $data = [
+            'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
+            'news' =>  News::where('id_category', '=', $selctedCategory['id'])->paginate(9),
+            'newsCategory' => NewsCategory::all(),
+            'activeCategory' => 'all'
+        ];
+
+        $data['active'] = 'news';
+        $data['selctedCategory'] = $alias;
+
         return view('news', $data);
     }
 

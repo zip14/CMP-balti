@@ -6,7 +6,7 @@ use App\NewsCategory;
 use Illuminate\Http\Request;
 use App\News;
 use File;
-
+use Intervention\Image\ImageManagerStatic as Image;
 
 class NewsController extends Controller
 {
@@ -83,10 +83,13 @@ class NewsController extends Controller
         $input = $request->all();
 
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $input['image'] = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/images/news/', $input['image']);
 
+            $image = $request->file('image');
+            $input['image'] =  uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(1920, 1080);
+            $image_resize->save(public_path('images/news/' . $input['image']));
         }
 
         $news = new News();
@@ -141,9 +144,12 @@ class NewsController extends Controller
         $input = $request->all();
 
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $input['image'] = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/images/news', $input['image']);
+            $image = $request->file('image');
+            $input['image'] =  uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(1920, 1080);
+            $image_resize->save(public_path('images/news/' . $input['image']));
 
             if(isset($input['old_image']) && !empty($input['old_image'])){
                 File::delete(public_path() . '/images/news/' . $input['old_image']);

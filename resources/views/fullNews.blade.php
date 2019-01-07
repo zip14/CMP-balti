@@ -32,7 +32,7 @@
 
             <div class="project-infos">
                 <ul class="project-meta">
-                    <li><i class="fa fa-folder-open"></i>{{$news->category['name']}}</li>
+                    <li><a href="{{route('categoryNewsPage', ['category' => $news->category['alias']])}}"><i class="fa fa-folder-open"></i>{{$news->category['name']}}</a></li>
                     <li><i class="fa fa-calendar-o"></i>{{date('d F Y', strtotime($news['created_at']))}}</li>
                     <li><i class="fa fa-envelope-o"></i><a href="mailto:info@company.com">info@company.com</a></li>
                 </ul>

@@ -177,6 +177,7 @@ return [
 
         //my Providers
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -229,6 +230,7 @@ return [
 
         //my aliases
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

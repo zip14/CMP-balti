@@ -17,6 +17,10 @@
                 <input type="text" class="form-control validate[required]" id="name" name="name" placeholder="Denumirea:" value="{{!empty($name) ? $name : ''}}">
             </div>
 
+            <div class="form-group">
+                <label for="alias">Alias exemplu<i>(news-title)</i></label>
+                <input type="text" class="form-control validate[required]" id="alias" name="alias" placeholder="Alias:" value="{{!empty($news['alias']) ? $news['alias'] : ''}}">
+            </div>
 
             <button class="btn btn-default" type="reset">Curăța</button>
             <button class="btn btn-primary pull-right" type="submit">{{!empty($id) ? 'Modifica' : 'Adăuga'}}</button>
