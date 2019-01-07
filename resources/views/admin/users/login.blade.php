@@ -29,10 +29,10 @@
         <form id="login_form" method="post">
             {!! csrf_field() !!}
             <label>Login</label>
-            <input class=" validate[required]" type="text" name="login">
+            <input class="validate[required]" type="text" name="login">
 
             <label>Password</label>
-            <input class=" validate[required]" type="password" name="password">
+            <input class="validate[required]" type="password" name="password">
 
             <input type="checkbox" name="remember">
             <p>Remember me</p>

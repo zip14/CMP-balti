@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comments;
 use App\News;
 use App\NewsCategory;
 use App\Specialty;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
-    public function homePage(){
+    public function homePage()
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
             'topNews' => News::orderby('viewed', 'desc')->take(3)->get(),
@@ -22,7 +24,8 @@ class PagesController extends Controller
         return view('home', $data);
     }
 
-    public function newsPage(){
+    public function newsPage()
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
             'news' => News::orderby('created_at', 'asc')->paginate(9),
@@ -36,7 +39,8 @@ class PagesController extends Controller
         return view('news', $data);
     }
 
-    public function categoryNewsPage($alias){
+    public function categoryNewsPage($alias)
+    {
 
         $selctedCategory = NewsCategory::where('alias', $alias)->first();
 
@@ -53,11 +57,15 @@ class PagesController extends Controller
         return view('news', $data);
     }
 
-    public function fullNewsPage($alias){
+    public function fullNewsPage($alias)
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->with('category')->take(4)->get(),
             'news' => News::where('alias', $alias)->first(),
         ];
+
+        $data['newsComments'] = Comments::orderby('created_at', 'desc')->where('id_news', $data['news']['id'])->get();
+        $data['commentsCount'] = Comments::where('id_news', $data['news']['id'])->count();
 
         $data['active'] = 'news';
 
@@ -66,7 +74,8 @@ class PagesController extends Controller
         return view('fullNews', $data);
     }
 
-    public function gallaryPage(){
+    public function gallaryPage()
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
         ];
@@ -75,7 +84,8 @@ class PagesController extends Controller
         return view('gallary', $data);
     }
 
-    public function aboutPage(){
+    public function aboutPage()
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
         ];
@@ -84,7 +94,8 @@ class PagesController extends Controller
         return view('about', $data);
     }
 
-    public function specialtyPage(){
+    public function specialtyPage()
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
             'specialty' => Specialty::orderby('created_at', 'desc')->get(),
@@ -94,7 +105,8 @@ class PagesController extends Controller
         return view('specialty', $data);
     }
 
-    public function fullSpecialtyPage($id){
+    public function fullSpecialtyPage($id)
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
             'specialty' => Specialty::findOrFail($id),
@@ -105,7 +117,8 @@ class PagesController extends Controller
         return view('fullSpecialty', $data);
     }
 
-    public function contactPage(){
+    public function contactPage()
+    {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
         ];

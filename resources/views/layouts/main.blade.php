@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('css/templatemo-misc.css')}}">
     <link rel="stylesheet" href="{{asset('css/templatemo-style.css')}}">
+
+    <link href="{{asset('plugins/Validation-Engine/css/validationEngine.jquery.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('plugins/noty/css/noty.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('plugins/noty/themes/mint.css')}}" rel="stylesheet" type="text/css" />
+
     <script src="{{asset('js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')}}"></script>
 </head>
 <body>
@@ -127,8 +132,6 @@
         <p>Colegiul de Muzică și Pedagogie mun. Bălți</p>
     </div>
 </footer>
-
-
 
 <script src="{{asset('js/vendor/jquery-1.11.0.min.js')}}"></script>
 {{--<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>--}}

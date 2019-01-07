@@ -21,6 +21,8 @@ Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('
 Route::get('news/{news}', 'PagesController@fullNewsPage')->name('fullNewsPage');
 Route::get('news/category/{category}', 'PagesController@categoryNewsPage')->name('categoryNewsPage');
 
+Route::post('comments/store', 'CommentController@store')->name('comments.store');
+
 Route::get('login', 'UsersController@login')->name('myLogin');
 Route::post('login', 'UsersController@authenticate')->name('login');
 
@@ -68,6 +70,12 @@ Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
     Route::get('users/{users}/password', 'UsersController@password')->name('users.password');
     Route::post('users/{users}/change-password', 'UsersController@changePassword')->name('users.change-password');
     Route::resource('users', 'UsersController');
+
+    //Comments
+    Route::get('comments/{comments}/delete', 'CommentController@delete')->name('comments.delete');
+    Route::delete('comments/{comments}', 'CommentController@destroy')->name('comments.destroy');
+    Route::post('comments/select', 'CommentController@selectComments')->name('comments.list');
+    Route::get('comments/', 'CommentController@index')->name('comments.index');
 
 });
 

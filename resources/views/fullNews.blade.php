@@ -38,57 +38,91 @@
                 </ul>
             </div>
 
-            <div class="row" style="margin-top: 50px;">
-                <div class="col-md-12">
-                    <h2 class="comment-heading">Comments (3)</h2>
-                    <div class="box-content">
-                        <div class="comment">
-                            <div class="comment-inner">
+            @if($commentsCount != '0')
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-12">
+                        <h2 class="comment-heading">Comentarii ({{$commentsCount}})</h2>
+                        <div class="box-content">
+                            <div class="comment">
+                                <div class="comment-inner">
 
-                                <div class="comment-body">
-                                    <h4>name</h4>
-                                    <span>6 November 2084</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ab culpa unde quisquam. Dolorum, sint, nobis quisquam quaerat dicta laudantium at voluptatem eum expedita mollitia quas placeat tenetur possimus eligendi.</p>
-                                </div>
-                                <div class="comment-body">
-                                    <h4>name</h4>
-                                    <span>6 November 2084</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ab culpa unde quisquam. Dolorum, sint, nobis quisquam quaerat dicta laudantium at voluptatem eum expedita mollitia quas placeat tenetur possimus eligendi.</p>
-                                </div>
-                                <div class="comment-body">
-                                    <h4>name</h4>
-                                    <span>6 November 2084</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ab culpa unde quisquam. Dolorum, sint, nobis quisquam quaerat dicta laudantium at voluptatem eum expedita mollitia quas placeat tenetur possimus eligendi.</p>
+                                    @foreach($newsComments as $item)
+                                        <div class="comment-body">
+                                            <h4>{{$item['name']}}</h4>
+                                            <span>{{date('d F Y', strtotime($item['created_at']))}}</span>
+                                            <p>{{$item['comment']}}</p>
+                                        </div>
+                                    @endforeach
+
                                 </div>
 
-                            </div>
+                            </div> <!-- /.comment -->
 
-                        </div> <!-- /.comment -->
+                        </div> <!-- /.box-content -->
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
+            @endif()
 
-                    </div> <!-- /.box-content -->
-                </div> <!-- /.col-md-12 -->
-            </div> <!-- /.row -->
+
             <div class="row" style="margin-top: 50px;">
                 <div class="col-md-12 comment-form">
                     <h2 class="comment-heading">Lăsați un commentarii</h2>
                     <div class="box-content">
-                        <p>
-                            <label for="name">Prenume dvs:</label>
-                            <input type="text" name="name" id="name">
-                        </p>
-                        <p>
-                            <label for="email">E-mail:</label>
-                            <input type="text" name="email" id="email">
-                        </p>
-                        <p>
-                            <label for="comment">Commentariu dvs:</label>
-                            <textarea name="comment" id="comment"></textarea>
-                        </p>
-                        <input type="submit" class="mainBtn" id="submit-comment" value="Trimite" />
+
+                        <form id="comment_form">
+                            {!! csrf_field() !!}
+
+                            <input type="hidden" name="id_news" value="{{$news['id']}}">
+                            <p>
+                                <label for="name">Prenume dvs:</label>
+                                <input type="text" class="validate[required]" name="name" id="name" required>
+                            </p>
+                            <p>
+                                <label for="email">E-mail:</label>
+                                <input type="email" name="email" class="validate[required]" id="email" required>
+                            </p>
+                            <p>
+                                <label for="comment">Commentariu dvs:</label>
+                                <textarea name="comment" class="validate[required]" id="comment" required></textarea>
+                            </p>
+                            <input type="submit" class="mainBtn" value="Trimite" />
+                        </form>
+
                     </div> <!-- /.box-content -->
                 </div> <!-- /.comment-form -->
             </div> <!-- /.row -->
         </div> <!-- /.inner-content -->
     </div> <!-- /.content-wrapper -->
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('plugins/noty/js/noty.js')}}"></script>
+    <script src="{{asset('plugins/Validation-Engine/js/jquery.validationEngine.js')}}"></script>
+    <script src="{{asset('plugins/Validation-Engine/js/jquery.validationEngine-ro.js')}}"></script>
+
+    <script src="{{asset('js/script_admin.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+         $('#comment_form').on('submit', function (e) {
+             e.preventDefault();
+
+             $.ajax ({
+                 url : '{{route('comments.store')}}',
+                 type: 'POST',
+                 data:  $('#comment_form').serialize(),
+                 dataType: 'JSON',
+                 success: function (response) {
+                     $('#comment_form').trigger("reset");
+                     new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
+
+                 },
+                 error: function (error) {
+                     onSaveRequestError(error);
+                 }
+             })
+
+         })
+        });
+    </script>
 
 @endsection
