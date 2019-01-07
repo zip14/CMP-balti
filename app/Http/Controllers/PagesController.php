@@ -33,15 +33,15 @@ class PagesController extends Controller
         return view('news', $data);
     }
 
-    public function fullNewsPage($id){
+    public function fullNewsPage($alias){
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->with('category')->take(4)->get(),
-            'news' => News::findOrFail($id),
+            'news' => News::where('alias', $alias)->first(),
         ];
 
         $data['active'] = 'news';
 
-        DB::table('news')->where('id', '=', $id)->increment('viewed', 1);
+        DB::table('news')->where('alias', '=', $alias)->increment('viewed', 1);
 
         return view('fullNews', $data);
     }

@@ -73,6 +73,7 @@ class NewsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
+            'alias' => 'required|unique:news',
             'content' => 'required',
             'description' => 'required',
             'id_category' => 'required',
@@ -131,10 +132,10 @@ class NewsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
+            'alias' => 'required|unique:news,alias,'.$request['id'],
             'content' => 'required',
             'description' => 'required',
             'id_category' => 'required',
-            'image' => 'required',
         ]);
 
         $input = $request->all();
@@ -158,7 +159,7 @@ class NewsController extends Controller
 
 
         return response()->json([
-            'message' => "Articol au fost actualizat"
+            'message' => "Știri au fost actualizat"
         ], 201);
 
     }

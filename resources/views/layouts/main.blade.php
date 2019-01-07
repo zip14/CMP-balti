@@ -104,7 +104,7 @@
                 @else
                     <img src="{{asset('images/news/noImg.jpg')}}" alt="{{$item['title']}}">
                 @endif
-                <p><a href="{{route('fullNewsPage', ['news' => $item['id']])}}">{{$item['title']}}</a></p>
+                <p><a href="{{route('fullNewsPage', ['news' => $item['alias']])}}">{{$item['title']}}</a></p>
             </li>
         @endforeach
     </ul>

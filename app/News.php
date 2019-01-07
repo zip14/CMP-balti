@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     protected $table = 'news';
-    protected $fillable=['title', 'description', 'content', 'image', 'id_category'];
+    protected $fillable=['title', 'description', 'content', 'image', 'id_category', 'alias'];
 
     public function category()
     {

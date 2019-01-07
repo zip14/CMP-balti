@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="box-content project-detail">
-                            <h2><a href="{{route('fullNewsPage', ['news' => $item['id']])}}">{{$item['title']}}</a></h2>
+                            <h2><a href="{{route('fullNewsPage', ['news' => $item['alias']])}}">{{$item['title']}}</a></h2>
                             <p>{{$item['description']}}</p>
                         </div>
                     </div> <!-- /.project-item -->
