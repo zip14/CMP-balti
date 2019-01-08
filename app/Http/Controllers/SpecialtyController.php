@@ -74,6 +74,7 @@ class SpecialtyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'alias' => 'required|unique:specialities',
             'content' => 'required',
             'description' => 'required',
             'schedule_link' => 'required',
@@ -133,6 +134,7 @@ class SpecialtyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'alias' => 'required|unique:specialities,alias,'.$request['id'],
             'content' => 'required',
             'description' => 'required',
             'schedule_link' => 'required',

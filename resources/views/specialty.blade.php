@@ -21,7 +21,7 @@
                         @endif
 
                         <div class="box-content">
-                            <h4 class="member-name"><a href="{{route('fullSpecialtyPage', ['specialty' => $item['id']])}}">{{$item['name']}}</a></h4>
+                            <h4 class="member-name"><a href="{{route('fullSpecialtyPage', ['specialty' => $item['alias']])}}">{{$item['name']}}</a></h4>
                             <span>Specialitate</span>
                             <p>{{$item['description']}}</p>
                         </div>

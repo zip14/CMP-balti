@@ -105,11 +105,11 @@ class PagesController extends Controller
         return view('specialty', $data);
     }
 
-    public function fullSpecialtyPage($id)
+    public function fullSpecialtyPage($alias)
     {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
-            'specialty' => Specialty::findOrFail($id),
+            'specialty' => Specialty::where('alias', $alias)->first(),
         ];
 
         $data['active'] = 'about';
