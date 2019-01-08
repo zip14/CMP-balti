@@ -18,11 +18,6 @@
             </div>
 
             <div class="form-group">
-                <label for="alias">Alias exemplu<i>(news-title)</i></label>
-                <input type="text" class="form-control validate[required]" id="alias" name="alias" placeholder="Alias:" value="{{!empty($news['alias']) ? $news['alias'] : ''}}">
-            </div>
-
-            <div class="form-group">
                 <label for="description">Descriere</label>
                 <textarea class="form-control validate[required]" id="description" name="description" rows="4" cols="80" style="resize: none" placeholder="Descriere:">{{!empty($news['description']) ? $news['description'] : ''}}</textarea>
             </div>

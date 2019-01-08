@@ -18,11 +18,6 @@
             </div>
 
             <div class="form-group">
-                <label for="alias">Alias</label>
-                <input type="text" class="form-control validate[required]" id="alias" name="alias" placeholder="Alias:" value="{{!empty($alias) ? $alias : ''}}">
-            </div>
-
-            <div class="form-group">
                 <label for="schedule_link">Orar</label>
                 <input type="text" class="form-control validate[required]" id="schedule_link" name="schedule_link" placeholder="Orar:" value="{{!empty($schedule_link) ? $schedule_link : ''}}">
             </div>

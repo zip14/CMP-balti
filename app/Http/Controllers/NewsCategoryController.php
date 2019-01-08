@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Alias;
 use App\NewsCategory;
 use Illuminate\Http\Request;
 
@@ -66,12 +67,13 @@ class NewsCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'alias' => 'required|unique:news_categories',
+            'name' => 'required|unique:news_categories',
 
         ]);
 
         $input = $request->all();
+
+        $input['alias'] = Alias::generateAlias($input['name']);
 
         $category = new NewsCategory();
         $category->fill($input);
@@ -114,13 +116,15 @@ class NewsCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'alias' => 'required|unique:news_categories,alias,'.$request['id'],
-
+            'name' => 'required|unique:news_categories,name,'.$request['id'],
         ]);
 
+        $input = $request->all();
+
+        $input['alias'] = Alias::generateAlias($input['name']);
+
         $category = NewsCategory::findOrFail($id);
-        $category->fill($request->all());
+        $category->fill($input);
         $category->update();
 
         return response()->json([

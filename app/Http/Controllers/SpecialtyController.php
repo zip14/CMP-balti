@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Alias;
 use App\Specialty;
 use Illuminate\Http\Request;
 use File;
@@ -73,8 +74,7 @@ class SpecialtyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'alias' => 'required|unique:specialities',
+            'name' =>  'required|unique:specialities',
             'content' => 'required',
             'description' => 'required',
             'schedule_link' => 'required',
@@ -82,6 +82,9 @@ class SpecialtyController extends Controller
         ]);
 
         $input = $request->all();
+
+        $input['alias'] = Alias::generateAlias($input['name']);
+
 
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -133,14 +136,15 @@ class SpecialtyController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'alias' => 'required|unique:specialities,alias,'.$request['id'],
+            'name' => 'required|unique:specialities,name,'.$request['id'],
             'content' => 'required',
             'description' => 'required',
             'schedule_link' => 'required',
         ]);
 
         $input = $request->all();
+
+        $input['alias'] = Alias::generateAlias($input['name']);
 
         if($request->hasFile('image')){
             $file = $request->file('image');

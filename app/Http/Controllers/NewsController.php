@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Alias;
 use App\NewsCategory;
 use Illuminate\Http\Request;
 use App\News;
@@ -72,8 +73,7 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'alias' => 'required|unique:news',
+            'title' => 'required|unique:news',
             'content' => 'required',
             'description' => 'required',
             'id_category' => 'required',
@@ -81,6 +81,8 @@ class NewsController extends Controller
         ]);
 
         $input = $request->all();
+
+        $input['alias'] = Alias::generateAlias($input['title']);
 
         if($request->hasFile('image')){
 
@@ -134,14 +136,15 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'alias' => 'required|unique:news,alias,'.$request['id'],
+            'title' => 'required|unique:news,title,'.$request['id'],
             'content' => 'required',
             'description' => 'required',
             'id_category' => 'required',
         ]);
 
         $input = $request->all();
+
+        $input['alias'] = Alias::generateAlias($input['title']);
 
         if($request->hasFile('image')){
             $image = $request->file('image');
