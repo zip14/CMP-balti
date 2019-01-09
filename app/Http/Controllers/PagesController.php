@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Comments;
+use App\Gallary;
+use App\GallaryCategory;
 use App\News;
 use App\NewsCategory;
 use App\Specialty;
@@ -78,9 +80,14 @@ class PagesController extends Controller
     {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
+            'gallaryCategory' => GallaryCategory::orderby('created_at', 'asc')->with('images')->paginate(1),
+//            'gallaryImage' => Gallary::all(),
         ];
 
         $data['active'] = 'gallary';
+//        echo ('<pre>');
+//        dd($data);
+//        echo ('</pre>');die;
         return view('gallary', $data);
     }
 

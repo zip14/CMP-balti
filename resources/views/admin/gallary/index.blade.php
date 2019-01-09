@@ -14,6 +14,7 @@
                 <thead>
                 <tr role="row">
                     <th>Descrierea</th>
+                    <th>Titlu</th>
                     <th>Сategorie</th>
                     <th>Imaginea</th>
                     <th>Data</th>
@@ -57,15 +58,17 @@
                 },
                 "columnDefs": [
                     {orderable: true, searchable: true, "targets": 0},
-                    {orderable: false, className: "w-200", searchable: false, "targets": 1},
-                    {orderable: false, className: "w-120", searchable: false, "targets": 2},
-                    {orderable: true, className: "w-100", searchable: false, "targets": 3},
-                    {orderable: false, className: "w-170", searchable: false, "targets": 4},
+                    {orderable: true, searchable: true, "targets": 1},
+                    {orderable: false, className: "w-200", searchable: false, "targets": 2},
+                    {orderable: false, className: "w-120", searchable: false, "targets": 3},
+                    {orderable: true, className: "w-100", searchable: false, "targets": 4},
+                    {orderable: false, className: "w-170", searchable: false, "targets": 5},
 
 
                 ],
                 "columns": [
                     {"data": "description"},
+                    {"data": "title"},
                     {"data": "category"},
                     {"data": "image"},
                     {"data": "date"},

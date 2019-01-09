@@ -9,12 +9,17 @@
             @endif
 
             <div class="panel-heading ui-draggable-handle">
-                <h3 class="panel-title"><strong>{{!empty($id) ? 'Editați' : 'Adăugați'}} imaginea</strong></h3>
+                <h3 class="panel-title"><strong>{{!empty($gallary['id']) ? 'Editați' : 'Adăugați'}} imaginea</strong></h3>
             </div>
 
             <div class="form-group">
                 <label for="description">Descriere</label>
                 <input type="text" class="form-control validate[required]" id="description" name="description" placeholder="Descriere:" value="{{!empty($gallary['description']) ? $gallary['description'] : ''}}">
+            </div>
+
+            <div class="form-group">
+                <label for="title">Titlu</label>
+                <input type="text" class="form-control validate[required]" id="title" name="title" placeholder="Titlu:" value="{{!empty($gallary['title']) ? $gallary['title'] : ''}}">
             </div>
 
             <div class="form-group">
@@ -30,7 +35,7 @@
 
             <div class="form-group">
                 <label for="image">Imaginea</label>
-                <input type="file" class="validate[required]"  id="image" name="image">
+                <input type="file" class="{{!empty($gallary['id']) ? '' : 'validate[required]'}}"  id="image" name="image">
             </div>
 
             <div class="form-group">
@@ -43,7 +48,7 @@
             </div>
 
             <button class="btn btn-default" type="reset">Curăța</button>
-            <button class="btn btn-primary pull-right" type="submit">{{!empty($id) ? 'Modifica' : 'Adăuga'}}</button>
+            <button class="btn btn-primary pull-right" type="submit">{{!empty($gallary['id']) ? 'Modifica' : 'Adăuga'}}</button>
 
         </form>
     </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\GallaryCategory;
 use App\Gallary;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GallaryController extends Controller
 {
@@ -23,7 +24,7 @@ class GallaryController extends Controller
 
     public function selectGallary()
     {
-        $query = Gallary::select('id', 'id_category', 'created_at', 'image', 'description')->with('category');
+        $query = Gallary::select('id', 'id_category', 'title', 'created_at', 'image', 'description')->with('category');
 
 
 
@@ -31,7 +32,8 @@ class GallaryController extends Controller
             ->order(function ($query) {
                 $columns = array(
                     0 => 'description',
-                    3 => 'created_at'
+                    1 => 'title',
+                    4 => 'created_at'
                 );
 
                 $dir = request()->order[0]['dir'];
@@ -76,15 +78,19 @@ class GallaryController extends Controller
             'id_category' => 'required',
             'image' => 'required',
             'description' => 'required',
+            'title' => 'required',
         ]);
 
         $input = $request->all();
-        ;
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $input['image'] = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/images/gallary/', $input['image']);
 
+        if($request->hasFile('image')){
+
+            $image = $request->file('image');
+            $input['image'] =  uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(1920, 1080);
+            $image_resize->save(public_path('images/gallary/' . $input['image']));
         }
 
         $gallary = new Gallary();
@@ -132,17 +138,20 @@ class GallaryController extends Controller
         $this->validate($request, [
             'id_category' => 'required',
             'description' => 'required',
+            'title' => 'required',
         ]);
 
         $input = $request->all();
 
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $input['image'] = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/images/gallary ', $input['image']);
+            $image = $request->file('image');
+            $input['image'] =  uniqid() . '.' . $image->getClientOriginalExtension();
 
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(1920, 1080);
+            $image_resize->save(public_path('images/gallary/' . $input['image']));
 
-            if(!empty($input['old_image'])){
+            if(isset($input['old_image']) && !empty($input['old_image'])){
                 File::delete(public_path() . '/images/gallary/' . $input['old_image']);
             }
 

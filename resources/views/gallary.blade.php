@@ -4,108 +4,34 @@
 
     <div class="container gallery-container">
 
-        <div class="my_title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        <div class="tz-gallery">
+        @foreach($gallaryCategory as $item)
+            @if(!empty($item['images']) && $item['images'] != '[]')
+                <div class="my_title">{{$item['name']}}</div>
+                <div class="tz-gallery">
+                    <div class="row">
+                        @foreach($item['images'] as $image)
+                                <div class="col-sm-12 col-md-4">
+                                    <a class="lightbox" href="{{asset('images/gallary') . '/' . $image['image']}}">
+                                        <img src="{{asset('images/gallary') . '/' . $image['image']}}" alt="">
+                                        <p>{{$image['title']}}</p>
+                                        <span>{{$image['description']}}</span>
+                                    </a>
+                                </div>
+
+                        @endforeach
+
+                    </div>
+                </div>
+            @endif
+        @endforeach
+
             <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/1.jpg">
-                        <img src="images/1.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, fuga.</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/2.jpg">
-                        <img src="images/my_img/2.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, in!</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/6.jpg">
-                        <img src="images/my_img/6.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, nesciunt.</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/5.jpg">
-                        <img src="images/my_img/5.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nostrum.</span>
-                    </a>
+                <div class="col-md-12">
+                    <div class="pagination text-center">
+                        {{ $gallaryCategory->links('paginate') }}
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="my_title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        <div class="tz-gallery">
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/1.jpg">
-                        <img src="images/1.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, fuga.</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/2.jpg">
-                        <img src="images/my_img/2.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, in!</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/6.jpg">
-                        <img src="images/my_img/6.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, nesciunt.</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/5.jpg">
-                        <img src="images/my_img/5.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nostrum.</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="my_title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        <div class="tz-gallery">
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/1.jpg">
-                        <img src="images/1.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, fuga.</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/2.jpg">
-                        <img src="images/my_img/2.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, in!</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/6.jpg">
-                        <img src="images/my_img/6.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, nesciunt.</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="lightbox" href="images/my_img/5.jpg">
-                        <img src="images/my_img/5.jpg" alt="">
-                        <p>Title image</p>
-                        <span>Description image Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, nostrum.</span>
-                    </a>
-                </div>
-            </div>
-        </div>
 
     </div>
 

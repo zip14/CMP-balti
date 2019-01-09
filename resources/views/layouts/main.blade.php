@@ -18,6 +18,13 @@
     <link href="{{asset('plugins/noty/themes/mint.css')}}" rel="stylesheet" type="text/css" />
 
     <script src="{{asset('js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')}}"></script>
+
+    @if($active == 'gallary')
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+    @endif
+
 </head>
 <body>
 <section id="pageloader">
@@ -27,7 +34,7 @@
 <header class="site-header container-fluid">
     <div class="top-header">
         <div class="logo col-md-6 col-sm-6">
-            <h1><a href="index.html"><img src="{{asset('images/my_img/logo.png')}}" alt=""></a></h1><br>
+            <h1><a href="{{route('homePage')}}"><img src="{{asset('images/my_img/logo.png')}}" alt=""></a></h1><br>
             <span>Colegiul de Muzică și Pedagogie mun. Bălți</span>
         </div>
         <div class="social-top col-md-6 col-sm-6">
@@ -132,6 +139,13 @@
         <p>Colegiul de Muzică și Pedagogie mun. Bălți</p>
     </div>
 </footer>
+
+@if($active == 'gallary')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>
+@endif
 
 <script src="{{asset('js/vendor/jquery-1.11.0.min.js')}}"></script>
 {{--<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>--}}
