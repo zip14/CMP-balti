@@ -61,7 +61,7 @@
                     {orderable: false, searchable: true, "targets": 1},
                     {orderable: false, className: "w-150", searchable: false, "targets": 2},
                     {orderable: false, className: "w-120", searchable: false, "targets": 3},
-                    {orderable: true, className: "w-80", searchable: false, "targets": 4},
+                    {orderable: true, className: "ta-c w-60", searchable: false, "targets": 4},
                     {orderable: false, className: "w-170", searchable: false, "targets": 5},
 
 

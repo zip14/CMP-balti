@@ -17,9 +17,12 @@ Route::get('gallary/', 'PagesController@gallaryPage')->name('gallaryPage');
 Route::get('about/', 'PagesController@aboutPage')->name('aboutPage');
 Route::get('contact/', 'PagesController@contactPage')->name('contactPage');
 Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage');
+Route::get('team/', 'PagesController@teamPage')->name('teamPage');
+
 Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
 Route::get('news/{news}', 'PagesController@fullNewsPage')->name('fullNewsPage');
 Route::get('news/category/{category}', 'PagesController@categoryNewsPage')->name('categoryNewsPage');
+Route::get('team/{team}', 'PagesController@fullTeamPage')->name('fullTeamPage');
 
 Route::post('comments/store', 'CommentController@store')->name('comments.store');
 
@@ -40,18 +43,15 @@ Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
     Route::get('gallary-category/{gallary_category}/delete', 'GallaryCategoryController@delete')->name('gallary-category.delete');
     Route::resource('gallary-category', 'GallaryCategoryController');
 
-
     //Gallary
     Route::post('gallary/select', 'GallaryController@selectGallary')->name('gallary.list');
     Route::get('gallary/{gallary}/delete', 'GallaryController@delete')->name('gallary.delete');
     Route::resource('gallary', 'GallaryController');
 
-
     //News-category
     Route::post('news-category/select', 'NewsCategoryController@selectCategories')->name('news-category.list');
     Route::get('news-category/{news_category}/delete', 'NewsCategoryController@delete')->name('news-category.delete');
     Route::resource('news-category', 'NewsCategoryController');
-
 
     //News
     Route::post('news/select', 'NewsController@selectNews')->name('news.list');
@@ -62,6 +62,11 @@ Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
     Route::post('specialty/select', 'SpecialtyController@selectSpecialty')->name('specialty.list');
     Route::get('specialty/{specialty}/delete', 'SpecialtyController@delete')->name('specialty.delete');
     Route::resource('specialty', 'SpecialtyController');
+
+    //Team
+    Route::post('team/select', 'TeamController@selectPerson')->name('team.list');
+    Route::get('team/{team}/delete', 'TeamController@delete')->name('team.delete');
+    Route::resource('team', 'TeamController');
 
     //Users
     Route::get('users/profile', 'UsersController@profile')->name('users.profile');

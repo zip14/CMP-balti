@@ -8,6 +8,7 @@ use App\GallaryCategory;
 use App\News;
 use App\NewsCategory;
 use App\Specialty;
+use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -122,6 +123,30 @@ class PagesController extends Controller
         $data['active'] = 'about';
 
         return view('fullSpecialty', $data);
+    }
+
+    public function teamPage()
+    {
+        $data = [
+            'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
+            'team' => Team::orderby('created_at', 'asc')->get(),
+        ];
+
+        $data['active'] = 'about';
+        return view('team', $data);
+
+    }
+
+    public function fullTeamPage($alias)
+    {
+        $data = [
+            'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
+            'person' => Team::where('alias', $alias)->first(),
+        ];
+
+        $data['active'] = 'about';
+
+        return view('fullTeam', $data);
     }
 
     public function contactPage()

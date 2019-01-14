@@ -41,7 +41,7 @@
                 responsive: true,
                 //"searching": false,
                 stateSave: true,
-                "order": [ 3, 'desc' ],
+                "order": [ 1, 'desc' ],
                 "language": {
                     "lengthMenu": "_MENU_ pe pagina",
                     "zeroRecords": "Nimic nu a fost găsit - îmi pare rău",
@@ -61,7 +61,7 @@
                     {orderable: true, searchable: true, "targets": 1},
                     {orderable: false, className: "w-200", searchable: false, "targets": 2},
                     {orderable: false, className: "w-120", searchable: false, "targets": 3},
-                    {orderable: true, className: "w-100", searchable: false, "targets": 4},
+                    {orderable: true, className: "ta-c w-60", searchable: false, "targets": 4},
                     {orderable: false, className: "w-170", searchable: false, "targets": 5},
 
 

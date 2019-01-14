@@ -16,6 +16,7 @@
                     <th>Imaginea</th>
                     <th>Nume Prenume</th>
                     <th>Rolul</th>
+                    <th>Data</th>
                     <th>Acţiuni</th>
                 </tr>
                 </thead>
@@ -57,13 +58,15 @@
                     {orderable: false, className: "ta-c w-100", "targets": 0},
                     {orderable: true, searchable: true, "targets": 1},
                     {orderable: true, className: "ta-c w-100", searchable: false, "targets": 2},
-                    {orderable: false, className: "ta-c w-170", searchable: false, "targets": 3}
+                    {orderable: false, className: "ta-c w-60", searchable: false, "targets": 3},
+                    {orderable: false, className: "ta-c w-170", searchable: false, "targets": 4}
 
                 ],
                 "columns": [
                     {"data": "image"},
                     {"data": "nameSurname"},
                     {"data": "type"},
+                    {"data": "date"},
                     {"data": "actions"}
 
                 ],

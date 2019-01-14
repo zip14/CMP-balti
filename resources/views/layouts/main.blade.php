@@ -68,7 +68,7 @@
                     <li class="{{$active == 'about' ? 'active' : ''}}"><a href="{{route('aboutPage')}}">Despre noi</a>
                         <ul>
                             <li><a href="{{route('specialtyPage')}}">Specialități</a></li>
-                            <li><a href="echipa.html">echipa</a></li>
+                            <li><a href="{{route('teamPage')}}">echipa</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Elevi</a>

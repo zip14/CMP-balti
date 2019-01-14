@@ -55,7 +55,7 @@
                 },
                 "columnDefs": [
                     {orderable: true, searchable: true, "targets": 0},
-                    {orderable: true, className: "w-170", searchable: false, "targets": 1},
+                    {orderable: true, className: "ta-c w-60", searchable: false, "targets": 1},
                     {orderable: false, className: "w-170", searchable: false, "targets": 2},
 
 

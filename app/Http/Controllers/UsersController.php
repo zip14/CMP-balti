@@ -61,7 +61,7 @@ class UsersController extends Controller
 
     public function selectUsers()
     {
-        $query = User::select('id', 'name', 'surname', 'type', 'image');
+        $query = User::select('id', 'name', 'surname', 'type', 'image', 'created_at');
 
         return datatables($query)
             ->order(function ($query) {
@@ -81,6 +81,9 @@ class UsersController extends Controller
             ->addColumn('actions', 'admin/users/actions')
             ->addColumn('nameSurname', function($query){
                 return $query->name . ' ' . $query->surname;
+            })
+            ->addColumn('date', function($query){
+                return date('d.m.Y', strtotime($query->created_at));
             })
 
             ->addColumn('type', function($query){
