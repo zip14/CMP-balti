@@ -67,9 +67,9 @@
 
                 ],
                 "columns": [
-                    {"data": "title"},
+                    {"data": "titleLink"},
                     {"data": "description"},
-                    {"data": "category"},
+                    {"data": "categoryLink"},
                     {"data": "image"},
                     {"data": "date"},
                     {"data": "actions"},

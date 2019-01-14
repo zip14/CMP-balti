@@ -67,7 +67,7 @@
 
                 ],
                 "columns": [
-                    {"data": "name"},
+                    {"data": "nameLink"},
                     {"data": "description"},
                     {"data": "orar_link"},
                     {"data": "image"},

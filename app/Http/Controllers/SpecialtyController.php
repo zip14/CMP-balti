@@ -23,7 +23,7 @@ class SpecialtyController extends Controller
 
     public function selectSpecialty()
     {
-        $query = Specialty::select('id', 'name', 'description', 'image', 'schedule_link', 'created_at');
+        $query = Specialty::select('id', 'name', 'alias', 'description', 'image', 'schedule_link', 'created_at');
 
 
         return datatables($query)
@@ -38,7 +38,7 @@ class SpecialtyController extends Controller
 
                 $query->orderBy($col, $dir);
             })
-            ->rawColumns(['actions', 'date', 'image', 'orar_link'])
+            ->rawColumns(['actions', 'date', 'image', 'orar_link', 'nameLink'])
             ->addColumn('actions', 'admin/specialty/actions')
             ->addColumn('image', 'admin/specialty/image')
 
@@ -46,8 +46,12 @@ class SpecialtyController extends Controller
                 return date('d.m.Y', strtotime($query->created_at));
             })
 
+            ->addColumn('nameLink', function($query){
+                return "<a href = '" . route('fullSpecialtyPage', ['specialty' => $query['alias']]) . "' target = '_blank'>" . $query['name'] . "</a>";
+            })
+
             ->addColumn('orar_link', function($query){
-//                return $query->category['name'];
+
                 return "<a href='{$query->schedule_link}' target='_blank'>Orar({$query->name})</a>";
             })
 

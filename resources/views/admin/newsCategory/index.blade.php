@@ -61,7 +61,7 @@
 
                 ],
                 "columns": [
-                    {"data": "name"},
+                    {"data": "nameLink"},
                     {"data": "date"},
                     {"data": "actions"},
 

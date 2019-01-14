@@ -52,7 +52,7 @@ class TeamController extends Controller
             })
 
             ->addColumn('nameSurname', function($query){
-                return "<a href = '" . route('fullNewsPage', ['news' => $query['alias']]) . "' target = '_blank'>" . $query['name'] . "</a>";
+                return "<a href = '" . route('fullTeamPage', ['team' => $query['alias']]) . "' target = '_blank'>" . $query['name'] . "</a>";
             })
 
             ->toJson();

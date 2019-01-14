@@ -23,7 +23,7 @@ class NewsController extends Controller
 
     public function selectNews()
     {
-        $query = News::select('id', 'title', 'description', 'image', 'id_category', 'created_at')->with('category');
+        $query = News::select('id', 'title', 'alias', 'description', 'image', 'id_category', 'created_at')->with('category');
 
 
         return datatables($query)
@@ -38,12 +38,20 @@ class NewsController extends Controller
 
                 $query->orderBy($col, $dir);
             })
-            ->rawColumns(['actions', 'date', 'image', 'category'])
+            ->rawColumns(['actions', 'date', 'image', 'category', 'titleLink', 'categoryLink'])
             ->addColumn('actions', 'admin/news/actions')
             ->addColumn('image', 'admin/news/image')
 
             ->addColumn('date', function($query){
                 return date('d.m.Y', strtotime($query->created_at));
+            })
+
+            ->addColumn('titleLink', function($query){
+                return "<a href = '" . route('fullNewsPage', ['news' => $query['alias']]) . "' target = '_blank'>" . $query['title'] . "</a>";
+            })
+
+            ->addColumn('categoryLink', function($query){
+                return "<a href = '" . route('categoryNewsPage', ['category' => $query->category['alias']]) . "' target = '_blank'>" . $query->category['name'] . "</a>";
             })
 
             ->addColumn('category', function($query){

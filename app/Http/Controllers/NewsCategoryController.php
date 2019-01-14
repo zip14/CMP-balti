@@ -22,7 +22,7 @@ class NewsCategoryController extends Controller
     public function selectCategories()
     {
 
-        $query = NewsCategory::select('id', 'name', 'created_at');
+        $query = NewsCategory::select('id', 'name', 'alias', 'created_at');
 
         return datatables($query)
             ->order(function ($query) {
@@ -36,8 +36,12 @@ class NewsCategoryController extends Controller
 
                 $query->orderBy($col, $dir);
             })
-            ->rawColumns(['actions', 'date'])
+            ->rawColumns(['actions', 'date', 'nameLink'])
             ->addColumn('actions', 'admin/newsCategory/actions')
+
+            ->addColumn('nameLink', function($query){
+                return "<a href = '" . route('categoryNewsPage', ['category' => $query['alias']]) . "' target = '_blank'>" . $query['name'] . "</a>";
+            })
 
             ->addColumn('date', function($query){
                 return date('d.m.Y', strtotime($query->created_at));
