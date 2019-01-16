@@ -1918,11 +1918,22 @@ footer > ul li span{
   box-sizing: border-box;
   padding: 10px 40px 10px 0;
 }
+
+
+
 #echipa_full p:first-letter{
   color:rgb(246, 151, 48);
   font-size: 27px;
   padding-right: 4px;
 }
+
+
+@media(min-width: 1001px){
+    #echipa_full p{
+        margin-top: 100px;
+    }
+}
+
 
 @media(max-width: 1000px){
   #echipa_wrapp_full #echipa_full ul{
@@ -1936,6 +1947,7 @@ footer > ul li span{
     margin-left: 4%;
     grid-template-columns:1fr;
   }
+
 }
 @media(max-width: 600px){
   #echipa_wrapp_full #echipa_full .echipa_wrapp_img_full{

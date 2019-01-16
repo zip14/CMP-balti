@@ -68,7 +68,7 @@
             if(status){
 
                 $.ajax ({
-                    url : url,
+                    url : '{{route('authenticate')}}',
                     type: 'POST',
                     data:  $('#login_form').serialize(),
                     dataType: 'JSON',
