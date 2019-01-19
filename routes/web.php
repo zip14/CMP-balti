@@ -34,6 +34,8 @@ Route::post('/admin', 'UsersController@authenticate')->name('authenticate');
 Route::get('/logout', 'UsersController@logout')->name('logout');
 Route::get('/logout-form', 'UsersController@logoutForm')->name('logoutForm');
 
+Route::post('send', 'MailController@send')->name('sendMail');
+
 Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
 
     Route::get('/', 'NewsController@index');
@@ -84,6 +86,3 @@ Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
 
 });
 
-//Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

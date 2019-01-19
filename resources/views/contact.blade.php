@@ -16,18 +16,20 @@
                         <div class="col-md-7">
                             <h3 class="contact-title">Trimite Email</h3>
                             <div class="contact-form-inner">
-                                <form method="post" action="#" name="contactform" id="contactform">
+                                <form id="contactform">
+                                    {!! csrf_field() !!}
+
                                     <p>
                                         <label for="name">Prenumele dvs:</label><br>
-                                        <input name="name" type="text" id="name">
+                                        <input name="name" type="text" id="name" required>
                                     </p>
                                     <p>
                                         <label for="email">Email Address:</label><br>
-                                        <input name="email" type="text" id="email">
+                                        <input name="email" type="email" id="email" required>
                                     </p>
                                     <p>
                                         <label for="comments">Mesag dvs:</label><br>
-                                        <textarea name="comments" id="comments"></textarea>
+                                        <textarea name="message" id="comments" required></textarea>
                                     </p>
                                     <input type="submit" class="mainBtn" id="submit" value="Trimite" />
                                 </form>
@@ -81,5 +83,36 @@
             </div> <!-- /.contact-form -->
         </div> <!-- /.inner-content -->
     </div> <!-- /.content-wrapper -->
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('plugins/noty/js/noty.js')}}"></script>
+    <script src="{{asset('plugins/Validation-Engine/js/jquery.validationEngine.js')}}"></script>
+    <script src="{{asset('plugins/Validation-Engine/js/jquery.validationEngine-ro.js')}}"></script>
+
+    <script src="{{asset('js/script_admin.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $('#contactform').on('submit', function (e) {
+                e.preventDefault();
+
+                $.ajax ({
+                    url : '{{route('sendMail')}}',
+                    type: 'POST',
+                    data:  $('#contactform').serialize(),
+                    dataType: 'JSON',
+                    success: function (response) {
+                        $('#contactform').trigger("reset");
+                        new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
+
+                    },
+                    error: function (error) {
+                        onSaveRequestError(error);
+                    }
+                })
+
+            })
+        });
+    </script>
 
 @endsection
