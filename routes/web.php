@@ -20,8 +20,12 @@ Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage')
 Route::get('team/', 'PagesController@teamPage')->name('teamPage');
 
 Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
+
 Route::get('news/{news}', 'PagesController@fullNewsPage')->name('fullNewsPage');
 Route::get('news/category/{category}', 'PagesController@categoryNewsPage')->name('categoryNewsPage');
+
+Route::post('search', 'PagesController@searchNews')->name('search');
+
 Route::get('team/{team}', 'PagesController@fullTeamPage')->name('fullTeamPage');
 
 Route::post('comments/store', 'CommentController@store')->name('comments.store');
@@ -35,6 +39,7 @@ Route::get('/logout', 'UsersController@logout')->name('logout');
 Route::get('/logout-form', 'UsersController@logoutForm')->name('logoutForm');
 
 Route::post('send', 'MailController@send')->name('sendMail');
+
 
 Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
 

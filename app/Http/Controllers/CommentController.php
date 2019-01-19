@@ -73,8 +73,10 @@ class CommentController extends Controller
         $comment->fill($input);
         $comment->save();
 
+        $input['date'] = date('d F Y');
         return response()->json([
-            'message' => "Сomentariul a fost adăugat"
+            'message' => "Сomentariul a fost adăugat",
+            'renderComment' => view('partialView/comment', $input)->render()
         ], 201);
     }
 

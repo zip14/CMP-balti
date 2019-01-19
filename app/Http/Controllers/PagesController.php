@@ -11,6 +11,7 @@ use App\Specialty;
 use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 
 class PagesController extends Controller
@@ -77,18 +78,31 @@ class PagesController extends Controller
         return view('fullNews', $data);
     }
 
+    //search ajax method return render view
+    public function searchNews(Request $request)
+    {
+        $input = $request->all();
+
+        $searchData = [
+            'news' => News::where('title', 'LIKE', '%'. $input['search'] .'%')->paginate(9),
+            'search' => $input['search'],
+        ];
+
+        return response()->json([
+            'renderData' => view('partialView/search', $searchData)->render()
+        ], 201);
+
+    }
+
     public function gallaryPage()
     {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
             'gallaryCategory' => GallaryCategory::orderby('created_at', 'asc')->with('images')->paginate(1),
-//            'gallaryImage' => Gallary::all(),
         ];
 
         $data['active'] = 'gallary';
-//        echo ('<pre>');
-//        dd($data);
-//        echo ('</pre>');die;
+
         return view('gallary', $data);
     }
 

@@ -18,11 +18,6 @@
 
     <script src="{{asset('js/vendor/modernizr-2.6.1-respond-1.1.0.min.js')}}"></script>
 
-    @if($active == 'gallary')
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
-    @endif
     <script src="{{asset('plugins/noty/js/noty.js')}}"></script>
 </head>
 <body>
@@ -55,20 +50,15 @@
 
                 </div>
 
-                @if($active == 'home')
-                    <a href="#" class="btn-left arrow-left fa fa-angle-left" style="margin-left:70px;"></a>
-                    <a href="#" class="btn-left arrow-right fa fa-angle-right "></a>
-                @endif
-
             </div> <!-- /.main-header-left -->
 
             <div class="menu-wrapper col-md-9 col-sm-6 col-xs-4">
                 <a href="#" class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></a>
                 <ul class="sf-menu hidden-xs hidden-sm">
-                    <li class="{{$active == 'home' ? 'active' : ''}}"><a href="{{route('homePage')}}">Acasă</a></li>
-                    <li class="{{$active == 'news' ? 'active' : ''}}"><a href="{{route('newsPage')}}">Noutăți</a></li>
-                    <li class="{{$active == 'gallary' ? 'active' : ''}}"><a href="{{route('gallaryPage')}}">Galerie</a></li>
-                    <li class="{{$active == 'about' ? 'active' : ''}}"><a href="{{route('aboutPage')}}">Despre noi</a>
+                    <li><a href="{{route('homePage')}}">Acasă</a></li>
+                    <li><a href="{{route('newsPage')}}">Noutăți</a></li>
+                    <li><a href="{{route('gallaryPage')}}">Galerie</a></li>
+                    <li><a href="{{route('aboutPage')}}">Despre noi</a>
                         <ul>
                             <li><a href="{{route('specialtyPage')}}">Specialități</a></li>
                             <li><a href="{{route('teamPage')}}">echipa</a></li>
@@ -80,17 +70,17 @@
                             <li><a href="absolvenți.html">absolvenți</a></li>
                         </ul>
                     </li>
-                    <li class="{{$active == 'contact' ? 'active' : ''}}"><a href="{{route('contactPage')}}">Contact</a></li>
+                    <li><a href="{{route('contactPage')}}">Contact</a></li>
                 </ul>
             </div> <!-- /.menu-wrapper -->
         </div> <!-- /.row -->
     </div> <!-- /.main-header -->
     <div id="responsive-menu">
         <ul>
-            <li class="{{$active == 'home' ? 'active' : ''}}"><a href="{{route('homePage')}}">Acasă</a></li>
-            <li class="{{$active == 'news' ? 'active' : ''}}"><a href="{{route('newsPage')}}">Noutăți</a></li>
-            <li class="{{$active == 'gallary' ? 'active' : ''}}"><a href="{{route('gallaryPage')}}">Galerie</a></li>
-            <li class="{{$active == 'about' ? 'active' : ''}}"><a href="{{route('aboutPage')}}">Despre noi</a>
+            <li><a href="{{route('homePage')}}">Acasă</a></li>
+            <li><a href="{{route('newsPage')}}">Noutăți</a></li>
+            <li><a href="{{route('gallaryPage')}}">Galerie</a></li>
+            <li><a href="{{route('aboutPage')}}">Despre noi</a>
                 <ul class="sub_menu">
                     <li><a href="{{route('specialtyPage')}}">Specialități</a></li>
                     <li><a href="{{route('teamPage')}}">echipa</a></li>
@@ -102,54 +92,35 @@
                     <li><a href="absolvenți.html">absolvenți</a></li>
                 </ul>
             </li>
-            <li class="{{$active == 'contact' ? 'active' : ''}}"><a href="{{route('contactPage')}}">Contact</a></li>
+            <li><a href="{{route('contactPage')}}">Contact</a></li>
         </ul>
     </div>
 </header> <!-- /.site-header -->
 
 <div class="search_container"></div>
-@yield('content')
 
-<footer>
-    <ul>
-        @foreach($lastNews as $item)
-            <li>
-                <span>{{date('d-m-Y', strtotime($item['created_at']))}}</span><i class="fa fa-calendar-o"></i>
-                @if(!empty($item['image']))
-                    <img src="{{asset('images/news/' . $item['image'])}}" alt="{{$item['title']}}">
-                @else
-                    <img src="{{asset('images/news/noImg.jpg')}}" alt="{{$item['title']}}">
-                @endif
-                <p><a href="{{route('fullNewsPage', ['news' => $item['alias']])}}">{{$item['title']}}</a></p>
-            </li>
-        @endforeach
-    </ul>
+<div class="content-wrapper">
+    <div class="inner-container container">
+        <div class="row">
+            <div class="section-header col-md-12">
+                <h2>404 - Pagina nu a fost gasita !</h2>
+            </div> <!-- /.section-header -->
+        </div> <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-content">
+                    <div class="text-center error-page">
+                        <h1>404</h1>
+                        <span>Pagina nu poate fi găsită pe acest site.</span>
+                        <p>Încercați Navigare sau Căutare pentru a găsi ceea ce căutați!</p>
+                        <p><a href="{{route('homePage')}}">&larr; Acasă</a></p>
+                    </div> <!-- /.text-center -->
+                </div> <!-- /.box-content -->
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+    </div> <!-- /.inner-content -->
+</div> <!-- /.content-wrapper -->
 
-    <div id="_footer_contact">
-        <div class="footer_contact">
-            <i class="fa fa-envelope"></i>
-            <p>colegiumuzical@gmail.com</p>
-        </div>
-        <div class="footer_contact">
-            <i class="fa fa-phone"></i>
-            <p>0 (231) 25-2-89</p>
-        </div>
-        <div class="footer_contact">
-            <i class="fa fa-map-marker"></i>
-            <p> Ciprian Porumbescu 18</p>
-        </div>
-    </div>
-    <div id="footer_bootom">
-        <p>Colegiul de Muzică și Pedagogie mun. Bălți</p>
-    </div>
-</footer>
-
-@if($active == 'gallary')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script>
-        baguetteBox.run('.tz-gallery');
-    </script>
-@endif
 
 <script src="{{asset('js/vendor/jquery-1.11.0.min.js')}}"></script>
 {{--<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>--}}
@@ -177,14 +148,14 @@
             success: function (response) {
                 $( ".container, .view_all, .swiper-container, #text_index, #special_index" ).remove();
                 $('.search_container').prepend(response.renderData);
-    
+
                 // $('#contactform').trigger("reset");
                 // new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
-    
+
             },
-    
+
         })
-    
+
     })
 </script>
 

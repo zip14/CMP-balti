@@ -93,16 +93,12 @@
             </div> <!-- /.row -->
         </div> <!-- /.inner-content -->
     </div> <!-- /.content-wrapper -->
-
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{asset('plugins/noty/js/noty.js')}}"></script>
-    <script src="{{asset('plugins/Validation-Engine/js/jquery.validationEngine.js')}}"></script>
-    <script src="{{asset('plugins/Validation-Engine/js/jquery.validationEngine-ro.js')}}"></script>
-
     <script src="{{asset('js/script_admin.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <script>
         $( document ).ready(function() {
+
          $('#comment_form').on('submit', function (e) {
              e.preventDefault();
 
@@ -113,6 +109,8 @@
                  dataType: 'JSON',
                  success: function (response) {
                      $('#comment_form').trigger("reset");
+                     $('.comment-inner').prepend(response.renderComment);
+
                      new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
 
                  },
