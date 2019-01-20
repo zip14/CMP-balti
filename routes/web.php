@@ -18,6 +18,7 @@ Route::get('about/', 'PagesController@aboutPage')->name('aboutPage');
 Route::get('contact/', 'PagesController@contactPage')->name('contactPage');
 Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage');
 Route::get('team/', 'PagesController@teamPage')->name('teamPage');
+Route::get('schedule/', 'PagesController@schedulePage')->name('schedulePage');
 
 Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
 
@@ -89,5 +90,8 @@ Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){
     Route::post('comments/select', 'CommentController@selectComments')->name('comments.list');
     Route::get('comments/', 'CommentController@index')->name('comments.index');
 
+    //Schedule
+    Route::get('schedule/', 'ScheduleController@form')->name('schedule.form');
+    Route::post('schedule/', 'ScheduleController@save')->name('schedule.save');
 });
 

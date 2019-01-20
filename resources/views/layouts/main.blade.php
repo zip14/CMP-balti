@@ -74,9 +74,9 @@
                             <li><a href="{{route('teamPage')}}">echipa</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Elevi</a>
+                    <li class="{{$active == 'schedule' ? 'active' : ''}}"><a href="#">Elevi</a>
                         <ul>
-                            <li><a href="orar.html">Orar</a></li>
+                            <li><a href="{{route('schedulePage')}}">Orar</a></li>
                             <li><a href="absolvenți.html">absolvenți</a></li>
                         </ul>
                     </li>
@@ -96,9 +96,9 @@
                     <li><a href="{{route('teamPage')}}">echipa</a></li>
                 </ul>
             </li>
-            <li><a href="#">Elevi</a>
+            <li class="{{$active == 'schedule' ? 'active' : ''}}"><a href="#">Elevi</a>
                 <ul class="sub_menu">
-                    <li><a href="orar.html">Orar</a></li>
+                    <li><a href="{{route('schedulePage')}}">Orar</a></li>
                     <li><a href="absolvenți.html">absolvenți</a></li>
                 </ul>
             </li>
@@ -161,26 +161,18 @@
         $('#pageloader').delay(350).fadeOut('slow');
         $('body').delay(350).css({'overflow-y':'visible'});
     })
-</script>
 
-<script>
-    // $('#search_input').on('click', function () {
-    //
-    // });
     $('#search_input').on('keyup', function () {
-        // alert($('#search_input').val()  );
+
         $.ajax ({
             url : '{{route('search')}}',
             type: 'POST',
             data:   $('#search').serialize(),
             dataType: 'JSON',
             success: function (response) {
-                $( ".container, .view_all, .swiper-container, #text_index, #special_index" ).remove();
+                $( ".container, .view_all, .swiper-container, .content-wrapper, #text_index, #special_index" ).remove();
                 $('.search_container').prepend(response.renderData);
-    
-                // $('#contactform').trigger("reset");
-                // new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
-    
+
             },
     
         })

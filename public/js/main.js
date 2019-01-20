@@ -177,10 +177,10 @@ jQuery(document).ready(function($) {
 
         //0692 46 836 руслан
 
-    $('#search-icon input').focus(function(){
+    $('#search-icon form input').focus(function(){
         $(this).parent().addClass('searc_full');
     });
-    $('#search-icon input').blur(function(){
+    $('#search-icon form input').blur(function(){
         $(this).parent().removeClass('searc_full');
     });    
     $('#responsive-menu ul li > .sub_menu').parent().addClass('sub_menu_item');

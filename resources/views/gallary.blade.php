@@ -25,14 +25,14 @@
             @endif
         @endforeach
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pagination text-center">
-                        {{ $gallaryCategory->links('paginate') }}
-                    </div>
-                </div>
-            </div>
 
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pagination text-center" style="display: block; margin-top: 50px;">
+                {{ $gallaryCategory->links('paginate')}}
+            </div>
+        </div>
     </div>
 
 @endsection

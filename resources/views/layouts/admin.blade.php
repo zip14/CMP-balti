@@ -146,6 +146,7 @@
                 <li><a href="{{ route('specialty.index') }}"><i class="fa fa-fw fa-user"></i> <span>Specialități</span></a></li>
                 <li><a href="{{ route('comments.index') }}"><i class="fa fa-fw fa-comments"></i> <span>Comentarii</span></a></li>
                 <li><a href="{{ route('team.index') }}"><i class="fa fa-fw fa-graduation-cap"></i> <span>Echipa</span></a></li>
+                <li><a data-fancybox data-type="ajax" data-src="{{ route('schedule.form') }}" href="javascript:;"><i class="fa fa-fw fa-clock-o"></i> <span>Orar</span></a></li>
 
                 @if(Auth::user()->type == 'admin')
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-fw fa-group"></i> <span>Utilizatori</span></a></li>

@@ -7,6 +7,7 @@ use App\Gallary;
 use App\GallaryCategory;
 use App\News;
 use App\NewsCategory;
+use App\Schedule;
 use App\Specialty;
 use App\Team;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class PagesController extends Controller
     {
         $data = [
             'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
-            'news' => News::orderby('created_at', 'asc')->paginate(9),
+            'news' => News::orderby('created_at', 'asc')->paginate(3),
             'newsCategory' => NewsCategory::all(),
             'activeCategory' => 'all'
         ];
@@ -171,6 +172,17 @@ class PagesController extends Controller
 
         $data['active'] = 'contact';
         return view('contact', $data);
+    }
+
+    public function schedulePage()
+    {
+        $data = [
+            'lastNews' => News::orderby('created_at', 'desc')->take(4)->get(),
+            'schedule' => Schedule::findOrFail('1'),
+        ];
+
+        $data['active'] = 'schedule';
+        return view('schedule', $data);
     }
 
 }

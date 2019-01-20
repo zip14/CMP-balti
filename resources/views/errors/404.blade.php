@@ -41,14 +41,14 @@
     <div class="main-header">
         <div class="row">
             <div class="main-header-left col-md-3 col-sm-6 col-xs-8">
-                <div id="search-icon" class="">
-                    <form id="search">
-                        {!! csrf_field() !!}
-                        <i class="fa fa-search"></i>
-                        <input type="text" name="search" id="search_input">
-                    </form>
+                {{--<div id="search-icon" class="">--}}
+                    {{--<form id="search">--}}
+                        {{--{!! csrf_field() !!}--}}
+                        {{--<i class="fa fa-search"></i>--}}
+                        {{--<input type="text" name="search" id="search_input">--}}
+                    {{--</form>--}}
 
-                </div>
+                {{--</div>--}}
 
             </div> <!-- /.main-header-left -->
 
@@ -66,7 +66,7 @@
                     </li>
                     <li><a href="#">Elevi</a>
                         <ul>
-                            <li><a href="orar.html">Orar</a></li>
+                            <li><a href="{{route('schedulePage')}}">Orar</a></li>
                             <li><a href="absolvenți.html">absolvenți</a></li>
                         </ul>
                     </li>
@@ -88,7 +88,7 @@
             </li>
             <li><a href="#">Elevi</a>
                 <ul class="sub_menu">
-                    <li><a href="orar.html">Orar</a></li>
+                    <li><a href="{{route('schedulePage')}}">Orar</a></li>
                     <li><a href="absolvenți.html">absolvenți</a></li>
                 </ul>
             </li>
@@ -131,31 +131,6 @@
         $('.loader-item').fadeOut();
         $('#pageloader').delay(350).fadeOut('slow');
         $('body').delay(350).css({'overflow-y':'visible'});
-    })
-</script>
-
-<script>
-    // $('#search_input').on('click', function () {
-    //
-    // });
-    $('#search_input').on('keyup', function () {
-        // alert($('#search_input').val()  );
-        $.ajax ({
-            url : '{{route('search')}}',
-            type: 'POST',
-            data:   $('#search').serialize(),
-            dataType: 'JSON',
-            success: function (response) {
-                $( ".container, .view_all, .swiper-container, #text_index, #special_index" ).remove();
-                $('.search_container').prepend(response.renderData);
-
-                // $('#contactform').trigger("reset");
-                // new Noty({type: 'success', layout: 'topRight', text: response.message, timeout:3000}).show();
-
-            },
-
-        })
-
     })
 </script>
 

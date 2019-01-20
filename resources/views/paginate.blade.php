@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
 
-    <ul class="pagination">
+    <ul>
         @if ($paginator->onFirstPage())
 
             <li class="disabled"> <span>&lt;</span>Precedenta</li>

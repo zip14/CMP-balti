@@ -12,7 +12,7 @@
                     <div class="inner-content">
                         <h2>Despre noi</h2>
                         <p>În primii ani de înfiinţare ca instituţie de învăţămînt mediu de specialitate, procesul instructiv-educativ a demarat doar în cadrul a  cinci catedre şi specializări respective...</p>
-                        <a href="despre_noi.html" class="main-btn white">подробнее</a>
+                        <a href="{{route('aboutPage')}}" class="main-btn white">mai mult</a>
                     </div> <!-- /.inner-content -->
                 </div> <!-- /.slider-caption -->
             </div> <!-- /.swier-slide -->
@@ -23,7 +23,7 @@
                     <div class="inner-content">
                         <h2>Orar</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe porro aut quia, ea inventore aliquam?</p>
-                        <a href="orar.html" class="main-btn white">подробнее</a>
+                        <a href="{{route('schedulePage')}}" class="main-btn white">mai mult</a>
                     </div> <!-- /.inner-content -->
                 </div> <!-- /.slider-caption -->
             </div> <!-- /.swier-slide -->
@@ -34,7 +34,7 @@
                     <div class="inner-content">
                         <h2>Profesori</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat est reiciendis, in amet deserunt soluta.</p>
-                        <a href="echipa.html" class="main-btn white">подробнее</a>
+                        <a href="{{route('teamPage')}}" class="main-btn white">mai mult</a>
                     </div> <!-- /.inner-content -->
                 </div> <!-- /.slider-caption -->
             </div> <!-- /.swier-slide -->
