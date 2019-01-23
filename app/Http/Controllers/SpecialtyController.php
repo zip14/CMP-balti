@@ -18,13 +18,14 @@ class SpecialtyController extends Controller
     public function index()
     {
         return view('admin/specialty/index');
-
     }
 
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectSpecialty()
     {
         $query = Specialty::select('id', 'name', 'alias', 'description', 'image', 'schedule_link', 'created_at');
-
 
         return datatables($query)
             ->order(function ($query) {
@@ -61,7 +62,7 @@ class SpecialtyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -122,12 +123,11 @@ class SpecialtyController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
         return view('admin/specialty/form', Specialty::findOrFail($id));
-
     }
 
     /**
@@ -174,10 +174,17 @@ class SpecialtyController extends Controller
     }
 
 
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
     public function delete($id)
     {
         return view('admin/specialty/delete', Specialty::findOrFail($id));
     }
+
     /**
      * Remove the specified resource from storage.
      *

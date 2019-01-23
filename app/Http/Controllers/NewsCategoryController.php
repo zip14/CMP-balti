@@ -16,9 +16,11 @@ class NewsCategoryController extends Controller
     public function index()
     {
         return view('admin/newsCategory/index');
-
     }
 
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectCategories()
     {
 
@@ -48,14 +50,12 @@ class NewsCategoryController extends Controller
             })
 
             ->toJson();
-
     }
-
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -103,7 +103,7 @@ class NewsCategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
@@ -136,10 +136,17 @@ class NewsCategoryController extends Controller
         ], 201);
     }
 
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
     public function delete($id)
     {
         return view('admin/newsCategory/delete', NewsCategory::findOrFail($id));
     }
+
     /**
      * Remove the specified resource from storage.
      *

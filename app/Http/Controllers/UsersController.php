@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
 
+    /**
+     * Show the form for login user.
+     *
+     * @return view
+     */
     public function login()
     {
         if (Auth::check()) {
@@ -20,10 +25,14 @@ class UsersController extends Controller
         return view('admin.users.login');
     }
 
+    /**
+     * Authenticate user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function authenticate(Request $request)
     {
-
-//        print_r($request->all());
         $remember = $request->input('remember');
         if (Auth::attempt(['login' => $request->login, 'password' => $request->password], $remember)) {
             return response()->json([
@@ -36,12 +45,20 @@ class UsersController extends Controller
         ], 422);
     }
 
-    //return logout form
-    public function logoutForm(){
+    /**
+     * Show the form for logout user.
+     *
+     * @return view
+     */
+    public function logoutForm()
+    {
         return view('admin.users.logout');
     }
 
-    //logout action
+    /**
+     * Logout user.
+     * @return home page
+     */
     public function logout()
     {
         Auth::logout();
@@ -58,7 +75,9 @@ class UsersController extends Controller
         return view('admin/users/index');
     }
 
-
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectUsers()
     {
         $query = User::select('id', 'name', 'surname', 'type', 'image', 'created_at');
@@ -100,7 +119,7 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -167,7 +186,7 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
@@ -281,11 +300,25 @@ class UsersController extends Controller
         }
     }
 
-    public function profile(){
+    /**
+     * Show the profile page.
+     *
+     * @return view
+     */
+
+    public function profile()
+    {
         return view('admin.users.profile', User::findOrFail(Auth::user()->id));
     }
 
-    public function delete($id){
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
+    public function delete($id)
+    {
         if(Auth::user()->type == 'admin'){
             return view('admin.users.delete', User::findOrFail($id));
         }

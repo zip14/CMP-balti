@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
+    /**
+     * Setnd email.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function send(Request $request)
     {
         $input = $request->all();

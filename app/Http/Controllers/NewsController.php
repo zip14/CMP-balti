@@ -21,10 +21,12 @@ class NewsController extends Controller
         return view('admin/news/index');
     }
 
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectNews()
     {
         $query = News::select('id', 'title', 'alias', 'description', 'image', 'id_category', 'created_at')->with('category');
-
 
         return datatables($query)
             ->order(function ($query) {
@@ -59,13 +61,12 @@ class NewsController extends Controller
             })
 
             ->toJson();
-
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -127,7 +128,7 @@ class NewsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
@@ -181,6 +182,12 @@ class NewsController extends Controller
 
     }
 
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
     public function delete($id)
     {
         return view('admin/news/delete', News::findOrFail($id));

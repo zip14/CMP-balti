@@ -12,7 +12,7 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
@@ -20,6 +20,9 @@ class CommentController extends Controller
 
     }
 
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectComments()
     {
         $query = Comments::select('id', 'name', 'email', 'comment', 'id_news', 'created_at')->with('news');
@@ -53,7 +56,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -80,6 +83,12 @@ class CommentController extends Controller
         ], 201);
     }
 
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
     public function delete($id)
     {
         return view('admin/comments/delete', Comments::findOrFail($id));

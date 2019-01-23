@@ -13,20 +13,19 @@ class GallaryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
         return view('admin/gallary/index');
     }
 
-
-
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectGallary()
     {
         $query = Gallary::select('id', 'id_category', 'title', 'created_at', 'image', 'description')->with('category');
-
-
 
         return datatables($query)
             ->order(function ($query) {
@@ -56,10 +55,11 @@ class GallaryController extends Controller
             ->toJson();
 
     }
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -118,12 +118,11 @@ class GallaryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
         return view('admin/gallary/form', ['category' => GallaryCategory::all(), 'gallary' =>  Gallary::findOrFail($id)]);
-
     }
 
     /**
@@ -169,6 +168,12 @@ class GallaryController extends Controller
         ], 201);
     }
 
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
     public function delete($id)
     {
         return view('admin/gallary/delete', Gallary::findOrFail($id));

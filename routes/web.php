@@ -12,24 +12,25 @@
 */
 
 Route::get('/', 'PagesController@homePage')->name('homePage');
+
 Route::get('news/', 'PagesController@newsPage')->name('newsPage');
-Route::get('gallary/', 'PagesController@gallaryPage')->name('gallaryPage');
-Route::get('about/', 'PagesController@aboutPage')->name('aboutPage');
-Route::get('contact/', 'PagesController@contactPage')->name('contactPage');
-Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage');
-Route::get('team/', 'PagesController@teamPage')->name('teamPage');
-Route::get('schedule/', 'PagesController@schedulePage')->name('schedulePage');
-
-Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
-
 Route::get('news/{news}', 'PagesController@fullNewsPage')->name('fullNewsPage');
 Route::get('news/category/{category}', 'PagesController@categoryNewsPage')->name('categoryNewsPage');
 
-Route::post('search', 'PagesController@searchNews')->name('search');
+Route::get('gallary/', 'PagesController@gallaryPage')->name('gallaryPage');
+Route::get('about/', 'PagesController@aboutPage')->name('aboutPage');
+Route::get('contact/', 'PagesController@contactPage')->name('contactPage');
 
+Route::get('specialty/', 'PagesController@specialtyPage')->name('specialtyPage');
+Route::get('specialty/{specialty}', 'PagesController@fullSpecialtyPage')->name('fullSpecialtyPage');
+
+Route::get('team/', 'PagesController@teamPage')->name('teamPage');
 Route::get('team/{team}', 'PagesController@fullTeamPage')->name('fullTeamPage');
 
+Route::get('schedule/', 'PagesController@schedulePage')->name('schedulePage');
+Route::post('search', 'PagesController@searchNews')->name('search');
 Route::post('comments/store', 'CommentController@store')->name('comments.store');
+Route::post('send', 'MailController@send')->name('sendMail');
 
 Route::get('login', 'UsersController@login')->name('myLogin');
 Route::post('login', 'UsersController@authenticate')->name('login');
@@ -38,8 +39,6 @@ Route::post('/admin', 'UsersController@authenticate')->name('authenticate');
 
 Route::get('/logout', 'UsersController@logout')->name('logout');
 Route::get('/logout-form', 'UsersController@logoutForm')->name('logoutForm');
-
-Route::post('send', 'MailController@send')->name('sendMail');
 
 
 Route::group(['prefix'=>'admin-panel', 'middleware'=>'auth'], function (){

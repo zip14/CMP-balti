@@ -12,7 +12,6 @@ use App\Specialty;
 use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 
 
 class PagesController extends Controller

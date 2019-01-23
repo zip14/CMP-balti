@@ -10,14 +10,16 @@ class GallaryCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
         return view('admin/gallaryCategory/index');
     }
 
-
+    /**
+     * @return JSON for Data table with all records
+     */
     public function selectCategories()
     {
 
@@ -46,11 +48,10 @@ class GallaryCategoryController extends Controller
 
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
@@ -58,7 +59,7 @@ class GallaryCategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -81,26 +82,14 @@ class GallaryCategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
         return view('admin/gallaryCategory/form', GallaryCategory::findOrFail($id));
-
     }
 
     /**
@@ -125,6 +114,12 @@ class GallaryCategoryController extends Controller
         ], 201);
     }
 
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
     public function delete($id)
     {
         return view('admin/gallaryCategory/delete', GallaryCategory::findOrFail($id));
@@ -136,8 +131,6 @@ class GallaryCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-
 
     public function destroy($id)
     {

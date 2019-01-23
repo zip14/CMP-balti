@@ -9,13 +9,22 @@ use Illuminate\Support\Facades\App;
 class ScheduleController extends Controller
 {
 
-    //return schedule form
+    /**
+     * Show the form for editing the specified resource where id = 1.
+     *
+     * @return view
+     */
     public function form()
     {
         return view('admin/schedule/form', Schedule::findOrFail('1'));
     }
 
-    //update schedule link
+    /**
+     * Update the specified resource in storage where id = 1.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function save(Request $request)
     {
         $this->validate($request, [

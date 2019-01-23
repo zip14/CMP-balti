@@ -21,9 +21,7 @@ class TeamController extends Controller
     }
 
     /**
-     * select list of the person team.
-     *
-     * @return JSON for DataTable
+     * @return JSON for Data table with all records
      */
     public function selectPerson()
     {
@@ -57,15 +55,15 @@ class TeamController extends Controller
 
             ->toJson();
     }
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function create()
     {
         return view('admin/team/form');
-
     }
 
     /**
@@ -122,7 +120,7 @@ class TeamController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function edit($id)
     {
@@ -172,7 +170,14 @@ class TeamController extends Controller
         ], 201);
     }
 
-    public function delete($id){
+    /**
+     * Show the form for deleting a resource.
+     *
+     * @param  int  $id
+     * @return view
+     */
+    public function delete($id)
+    {
         return view('admin.team.delete', Team::findOrFail($id));
     }
 
