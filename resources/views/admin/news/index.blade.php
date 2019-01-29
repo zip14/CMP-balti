@@ -5,7 +5,7 @@
         <div class="box-header">
             <h3 class="box-title">Noutăţi</h3>
             <div class="box-tools">
-                <a data-fancybox data-type="ajax" data-src="{{ route('news.create') }}" href="javascript:;" class="btn btn-block btn-primary "><i class="fa fa-fw fa-plus"></i> Adăuga știri</a>
+                <a href="{{ route('news.create') }}" class="btn btn-block btn-primary "><i class="fa fa-fw fa-plus"></i> Adăuga știri</a>
             </div>
         </div>
         <!-- /.box-header -->
